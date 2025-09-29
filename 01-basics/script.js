@@ -64,3 +64,20 @@ console.log("Your name is: " + fullName);
 
 firstName = "Bengt";
 console.log("Your name is: " + fullName);  // "Pelle Nordström"
+
+// let myName = "Johan 'haxx0r' Nordström";
+// let myName = 'Johan "haxx0r" Nordström';
+// let myName = "Johan \"haxx0r\" Nordström";   // "Johan "haxx0r" Nordström"
+
+let myNum = 3.14;  // number
+let myFakeNum = "3.14";  // string
+
+let myEmptyString = "";  // string
+let myUndefinedVariable;  // undefined
+
+let myName = "Johan";
+myName = "";  // string but empty
+myName = null;  // medvetet satt till att sakna värde
+
+let myTruth = true;
+let myFalse = false;
