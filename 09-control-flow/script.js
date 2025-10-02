@@ -16,6 +16,7 @@ let myAge = 72;
  * || = OR (*AT LEAST* one side has to be true)
  */
 
+/*
 //   72   >=   18        72  <=   65
 //       true                false
 //       true      AND       false
@@ -37,6 +38,7 @@ if (username === "dave" || username === "johan") {
 } else {
 	console.log("Welcome!");
 }
+*/
 
 // More advanced if-statement
 /*
@@ -50,6 +52,7 @@ if (myAge >= minAge && myAge <= maxAge) {
 	}
 }
 */
+/*
 if (myAge >= minAge && myAge <= maxAge) {
 	console.log(`You're between ${minAge} and ${maxAge} years old, welcome!`);
 } else if (myAge < minAge) {
@@ -59,3 +62,40 @@ if (myAge >= minAge && myAge <= maxAge) {
 }
 
 console.log("Program ended.");
+*/
+
+
+/**
+ * for-loops 🎡
+ */
+
+/*
+console.log("🎡 Starting loop...");
+
+for (
+	let i = 0;	// start value of i
+	i < 10;		// continue looping while this expression is true
+	i++			// after each loop (iteration), do this
+) {
+	// here be loop
+	console.log("We're looping 🥴, at loop number:", i);
+}
+
+console.log("🤢 Loop ended");
+*/
+
+let students = [
+	"Deadpool",		// 0
+	"Black Widow",	// 1
+	"Iron Man",		// 2
+	"Spider-Man",	// 3
+	"Wanda",		// 4
+	"Thanos",		// 5
+];
+
+console.log("Class of 2025:");
+for (let i = 0; i < students.length; i++) {
+	console.log(`Student at index ${i} is:`, students[i]);
+}
+
+console.log(`Number of students: ${students.length}`);
