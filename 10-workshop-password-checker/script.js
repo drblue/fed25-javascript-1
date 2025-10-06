@@ -54,12 +54,12 @@ console.log(`🕵🏻 Checking password '${password}'`);
 // Räknare som indikerar hur många specialtecken som hittats
 let specialCharCount = 0;
 
-// För varje tecken i specialChars, kolla om password innehåller det tecknet
-for (let i = 0; i < specialChars.length; i++) {
-	const specialChar = specialChars[i];
-	console.log(`At index ${i}, does password contain "${specialChar}"?`, password.includes(specialChar));
+// För varje tecken i password, kolla om specialChars innehåller det tecknet
+for (let i = 0; i < password.length; i++) {
+	const char = password[i];
+	console.log(`At index ${i}, is char "${char}" a special char?`, specialChars.includes(char));
 
-	if (password.includes(specialChar)) {
+	if (specialChars.includes(char)) {
 		specialCharCount++;
 	}
 }
@@ -74,6 +74,9 @@ if (password.length >= 16) {
 
 } else if (password.length >= 8 && specialCharCount >= 1) {
 	console.log("- ✅ Such password, much secure, very hard to crack!");
+
+} else if (password.length >= 6 && specialCharCount >= 2) {
+	console.log("- ✅ Such password, much secure, *VERY* hard to crack!");
 
 } else {
 	console.log("- 🚨 Insecure password, my grandma can crack it!");
