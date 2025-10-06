@@ -44,9 +44,11 @@ console.log("Finished looping, i is:", i);  // won't work as `i` only exists in 
 
 /**
  * while-loop
+ * runs 0 or more times
  */
+/*
 let i = 0;
-while (i < 10) {
+while (i > 0) {
 	// do this
 	console.log("in while-loop, i is:", i);
 
@@ -57,4 +59,19 @@ while (i < 10) {
 	// increase i by 1
 	i++;
 }
+console.log("Finished looping, i is:", i);
+*/
+
+/**
+ * do while-loop
+ * runs *at least* one time
+ */
+let i = 0;
+do {
+	// do this
+	console.log("in do while-loop, i is:", i);
+
+	// increase i by 1
+	i++;
+} while (i < 0);
 console.log("Finished looping, i is:", i);
