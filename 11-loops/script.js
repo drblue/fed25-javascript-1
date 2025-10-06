@@ -5,6 +5,7 @@
 /**
  * for-loop
  */
+/*
 let sum = 0;
 let points = [1, 5, -50, 10, 20, 8, 3, -5];
 for (let i = 0; i < points.length; i++) {
@@ -28,3 +29,32 @@ for (let i = 0; i < points.length; i++) {
 }
 
 console.log("Loop is done, sum is:", sum);
+*/
+
+/*
+for (
+	let i = 0;
+	i < 10;
+	i++
+) {
+	console.log("in 🐑-loop, i is:", i);
+}
+console.log("Finished looping, i is:", i);  // won't work as `i` only exists in the loop
+*/
+
+/**
+ * while-loop
+ */
+let i = 0;
+while (i < 10) {
+	// do this
+	console.log("in while-loop, i is:", i);
+
+	if (i >= 3) {
+		break;
+	}
+
+	// increase i by 1
+	i++;
+}
+console.log("Finished looping, i is:", i);
