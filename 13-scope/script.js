@@ -51,13 +51,13 @@ console.log("points after if-statements:", points);
 */
 
 // KIDS, DON'T TRY THIS AT HOME (OR AT SCOOL... OR AT WORK... OR EVER)
-var i = 42;
+let i = 42;
 // var i = 43;
 
-for (var i = 0; i < 5; i++) {
+for (let i = 0; i < 5; i++) {
 	console.log("lol", i);
 
-	for (var i = 0; i < 3; i++) {
+	for (let i = 0; i < 3; i++) {
 		console.log("rotflol", i);
 	}
 }
