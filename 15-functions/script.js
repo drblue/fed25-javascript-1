@@ -52,6 +52,7 @@ greetUser("Pelle", "night");
 console.log("I am after creating function");
 */
 
+/*
 let username = "Johan";
 
 const sayHi = function(username) {
@@ -62,3 +63,24 @@ const sayHi = function(username) {
 sayHi(username);   // sayHi("Johan")
 
 console.log("username after invoking function:", username);
+*/
+
+const calcBoxCircumference = function(width, height) {
+	return width * 2 + height * 2;
+}
+
+let sum1 = calcBoxCircumference(20, 40);  // let sum1 = 120;
+let sum2 = calcBoxCircumference(30, 60);  // let sum2 = 180;
+console.log("sum1", sum1);
+console.log("sum2", sum2);
+
+const w = 20;
+const h = 40;
+const sum3 = calcBoxCircumference(w, h);   // calcBoxCircumference(20, 40)
+if (sum3 > 100) {
+	console.log("That's a big box");
+} else {
+	console.log("smol box");
+}
+
+console.log("Circumference of a box with width 40 and height 80 is:", calcBoxCircumference(40, 80));
