@@ -69,7 +69,7 @@ const countSpecialChars = function (password) {
 }
 
 // Check whether the password is secure or not
-const checkPassword = function (password) {
+const isPasswordSecure = function (password) {
 	console.log(`🕵🏻 Checking password '${password}'`);
 
 	const specialCharCount = countSpecialChars(password);
@@ -77,29 +77,34 @@ const checkPassword = function (password) {
 
 	// Har lösenordet minst 16 tecken?
 	if (password.length >= 6 && specialCharCount >= 2) {
-		console.log("- ✅ Such password, much secure, *VERY* hard to crack!");
+		return true;
 
 	} else if (password.length >= 8 && specialCharCount >= 1) {
-		console.log("- ✅ Such password, much secure, very hard to crack!");
+		return true;
 
 	} else if (password.length >= 12 && password.includes("-")) {
-		console.log("- ✅ Great! That's a pretty good password!");
+		return true;
 
 	} else if (password.length >= 16) {
-		console.log("- ✅ Great! That's a long password!");
+		return true;
 
 	} else {
-		console.log("- 🚨 Insecure password, my grandma can crack it!");
+		return false;
 
 	}
 }
 
-// 🤓 Skriv din kod här
+// Loop over each password and check if it secure or not
 for (let i = 0; i < 9; i++) {
 	// get the password at index `i` from the array `passwords`
 	// and save it to the local variable `password`
 	const password = passwords[i];
 
-	// Ask checkPassword-function to evaluate the password
-	checkPassword(password);
+	// Ask isPasswordSecure-function to evaluate the password
+	const result = isPasswordSecure(password);
+	if (result) {
+		console.log("- ✅ Password is secure");
+	} else {
+		console.log("- 🚨 Password is insecure");
+	}
 }
