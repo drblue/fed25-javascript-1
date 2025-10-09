@@ -84,3 +84,18 @@ if (sum3 > 100) {
 }
 
 console.log("Circumference of a box with width 40 and height 80 is:", calcBoxCircumference(40, 80));
+
+/**
+ * Arrow Function Expression (Fat Arrow Function)
+ *
+ * Still a function expression
+ */
+
+const calcBoxArea = (width, height) => {
+	return width * height;
+}
+
+let boxArea1 = calcBoxArea(20, 40);  // let boxArea1 = 800
+let boxArea2 = calcBoxArea(30, 60);  // let boxArea1 = 1800
+console.log("boxArea1", boxArea1);
+console.log("boxArea2", boxArea2);
