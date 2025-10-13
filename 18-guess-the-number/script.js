@@ -39,24 +39,28 @@ const getRandomNumber = (max = 10) => {
 // 🔮 Skriv din kod här
 let numberToGuess = getRandomNumber();
 let continueGame = true;
+let attempts = 0;
 
 console.log("🐆🤫", numberToGuess);
 
 while (continueGame) {
 	// Ask for a guess
 	const guess = Number(prompt("Please guess a number between 1-10. Enter 0 to quit."));
-	console.log("User guessed:", guess);
+
+	// Increase number of attempts
+	attempts++;
 
 	if (guess === numberToGuess) {
 		// Guess was correct 🥳
 		console.log("Guess was correct! 🥳");
-		alert("Great success!");
+		alert(`Great success! You guessed the correct answer after ${attempts} attempt(s).`);
 		continueGame = false;
 
 	} else if (guess === 0) {
 		// User rage-quit
+		attempts--;
 		console.log("Guess was 0, quitting game");
-		alert("Y U GIVE UP?!");
+		alert(`Y U GIVE UP AFTER ONLY ${attempts} ATTEMPT(S)?!`);
 		continueGame = false;
 
 	} else if (guess > numberToGuess) {
