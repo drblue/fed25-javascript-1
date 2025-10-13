@@ -150,6 +150,7 @@ callClinic( finallyTalkToAReceptionist );
 console.log("Do some house-cleaning 🧹");
 */
 
+/*
 const logToConsole = (txt) => {
 	console.log(txt);
 }
@@ -164,3 +165,25 @@ const makeMoreInteresting = (txt, callback) => {
 }
 
 makeMoreInteresting("I love coffee", nagUser);
+*/
+
+let students = ["Johan", "Pelle", "Börje", "Kajan", "Tiffany"];
+//                 0        1        2        3         4
+
+/*
+for (let i = 0; i < students.length; i++) {
+	const student = students[i];
+	console.log(`Student at index ${i} is:`, student);
+}
+console.log("That's all the students that showed up today");
+*/
+
+students.forEach( (student, index) => {
+	console.log(`Student at index ${index} is:`, student);
+} );
+console.log("That's all the students that showed up today");
+
+let numbers = [13, 37, 42, 1337];
+numbers.forEach( (num, index) => {
+	console.log(`The number at position ${index} is:`, num);
+} );
