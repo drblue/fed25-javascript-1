@@ -34,7 +34,7 @@ showPetInfo(captainCat);
 // Objects are better suited for representing data that has an inherent
 // connection and is not dependent on the order of the keys.
 // Object use key/value-pairs.
-
+/*
 const fluffles = {
 	name: "Mr Fluffles",
 	age: 3,
@@ -73,3 +73,36 @@ const showPetInfo = (pet) => {
 
 showPetInfo(fluffles);
 showPetInfo(captainCat);
+*/
+
+// Objects can also contain complex (reference) data types
+const barksby = {
+	name: "Mr Barksby",
+	species: "Dog",
+	age: 5,
+	hobbies: ["Tail-wagging", "Eating lots of treats", "Car-chasing"],
+	sound: "WOOOFF!",
+	owner: {
+		name: "Mr Beans",
+		age: 57,
+	},
+}
+
+const meowJr = {
+	hobbies: ["Be cute", "Sleeping"],
+	species: "Kitten",
+	age: 1,
+	name: "Meow Jr",
+	sound: "meoww",
+}
+
+console.log("Barksby's hobbies are:", barksby.hobbies.join(", "));
+console.log("Meow Jr's hobbies are:", meowJr.hobbies.join(", "));
+
+console.log("Barksby's owner is: " + barksby.owner); // [object Object]
+console.log(`Barksby's owner is: ${barksby.owner}`); // [object Object]
+
+console.log(`Barksby's owner's name is: ${barksby.owner.name}`);
+
+console.log("Meow Jr's owner is: " + meowJr.owner); // undefined
+console.log(`Meow Jr's owner's name is: ${meowJr.owner.name}`); // Uncaught TypeError: can't access property "name", meowJr.owner is undefined
