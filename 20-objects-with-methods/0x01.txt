@@ -1,0 +1,4 @@
+{
+	name: "Pelle",
+	age: 4
+}

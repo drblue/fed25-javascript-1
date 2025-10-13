@@ -39,3 +39,32 @@ const meowJr = {
 
 monsieurBark.speak();
 meowJr.speak();
+
+
+/**
+ * Primitive vs reference data types
+ */
+
+const happyBirthday = (name, age) => {
+	age++;
+	console.log(`Happy Birthday ${name}, you are now ${age} years old 🥳`);
+}
+
+let birthdayBoy = "Pelle";
+let pelleAge = 3;
+happyBirthday(birthdayBoy, pelleAge);   // happyBirthday("Pelle", 3)
+
+console.log("Primitive-Pelles age outside of happyBirthday-function:", pelleAge);  // pelleAge is unaffected
+
+
+const pelle = {
+	name: "Pelle",
+	age: 3,
+}
+
+const happyBirthdayObj = (person) => {
+	person.age++;
+	console.log(`Happy Birthday ${person.name}, you are now ${person.age} years old 🥳`);
+}
+happyBirthdayObj(pelle);
+console.log("Reference-Pelles age outside of happyBirthdayObj-function:", pelle.age);
