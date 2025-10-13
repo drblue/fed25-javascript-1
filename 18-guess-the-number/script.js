@@ -40,6 +40,7 @@ const getRandomNumber = (max = 10) => {
 let numberToGuess = getRandomNumber();
 let continueGame = true;
 let attempts = 0;
+let highscore = null;
 
 console.log("🐆🤫", numberToGuess);
 
@@ -51,9 +52,25 @@ while (continueGame) {
 	attempts++;
 
 	if (guess === numberToGuess) {
-		// Guess was correct 🥳
-		console.log("Guess was correct! 🥳");
-		alert(`Great success! You guessed the correct answer after ${attempts} attempt(s).`);
+		// We can haz highscore?
+		if (highscore === null) {
+			// Guess was correct 🥳
+			console.log("Guess was correct! 🥳");
+			alert(`Great success! You guessed the correct answer after ${attempts} attempt(s).`);
+			highscore = attempts;
+
+		} else if (attempts < highscore) {
+			// YAY NEW HIGHSCORE! 🥇
+			console.log("Guess was correct, new highscore! 🥳🥳🥳");
+			alert(`Great success! You guessed the correct answer after ${attempts} attempt(s). Your previous highscore was ${highscore}.`);
+			highscore = attempts;
+
+		} else {
+			// No new highscore for you!
+			console.log("Guess was correct but no new highscore! 🥺");
+			alert(`You guessed the correct answer after ${attempts} attempt(s). Sorry, no new highscore - your current highscore is ${highscore}.`);
+
+		}
 
 		// Get a new number to guess. Also reset number of attempts
 		numberToGuess = getRandomNumber();
