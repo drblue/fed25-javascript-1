@@ -64,7 +64,7 @@ sayHi(username);   // sayHi("Johan")
 
 console.log("username after invoking function:", username);
 */
-
+/*
 const calcBoxCircumference = function(width, height) {
 	return width * 2 + height * 2;
 }
@@ -84,13 +84,13 @@ if (sum3 > 100) {
 }
 
 console.log("Circumference of a box with width 40 and height 80 is:", calcBoxCircumference(40, 80));
-
+*/
 /**
  * Arrow Function Expression (Fat Arrow Function)
  *
  * Still a function expression
  */
-
+/*
 const calcBoxArea = (width, height) => {
 	return width * height;
 }
@@ -99,3 +99,68 @@ let boxArea1 = calcBoxArea(20, 40);  // let boxArea1 = 800
 let boxArea2 = calcBoxArea(30, 60);  // let boxArea1 = 1800
 console.log("boxArea1", boxArea1);
 console.log("boxArea2", boxArea2);
+*/
+
+/**
+ * Functions vs Methods
+ *
+ * Methods are just functions that do something on the
+ * object that they are used on. For example `.toUpperCase()`
+ * that takes the value of the string it is used on and
+ * returns all characters in uppercase.
+ */
+/*
+let msg = "Good Morning FED25M!";
+let msgAllCaps = msg.toUpperCase();
+console.log("msg:", msg);
+console.log("msgAllCaps:", msgAllCaps);
+
+let username = "Johan the haxx0r";
+console.log("username:", username);
+
+const makeMoreInteresting = (str) => {
+	return str.toUpperCase() + "!!!!!!!111";
+}
+
+console.log("Interesting username:", makeMoreInteresting(username));
+*/
+
+/**
+ * Callbacks
+ */
+
+/*
+const finallyTalkToAReceptionist = () => {
+	console.log("Hello, this is dog 🐶");
+}
+
+const callClinic = (callback) => {
+	// oh noes, another telefonkö
+	for (let i = 0; i < 3000000000; i++) {
+		// beep
+	}
+	console.log("'allo?");
+	callback();
+}
+
+console.log("Calling clinic... 📲");
+callClinic( finallyTalkToAReceptionist );
+// finallyTalkToAReceptionist();
+
+console.log("Do some house-cleaning 🧹");
+*/
+
+const logToConsole = (txt) => {
+	console.log(txt);
+}
+
+const nagUser = (txt) => {
+	alert(txt);
+}
+
+const makeMoreInteresting = (txt, callback) => {
+	const interestingText = txt + "!!!!!!!!!!!!11";
+	callback(interestingText);
+}
+
+makeMoreInteresting("I love coffee", nagUser);
