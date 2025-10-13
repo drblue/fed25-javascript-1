@@ -54,7 +54,11 @@ while (continueGame) {
 		// Guess was correct 🥳
 		console.log("Guess was correct! 🥳");
 		alert(`Great success! You guessed the correct answer after ${attempts} attempt(s).`);
-		continueGame = false;
+
+		// Get a new number to guess. Also reset number of attempts
+		numberToGuess = getRandomNumber();
+		attempts = 0;
+		console.log("🐆🤫", numberToGuess);
 
 	} else if (guess === 0) {
 		// User rage-quit
