@@ -57,14 +57,28 @@ happyBirthday(birthdayBoy, pelleAge);   // happyBirthday("Pelle", 3)
 console.log("Primitive-Pelles age outside of happyBirthday-function:", pelleAge);  // pelleAge is unaffected
 
 
-const pelle = {
-	name: "Pelle",
-	age: 3,
+const bengt = {
+	name: "Bengt",
+	age: 42,
 }
+
+const bengtsTwin = bengt;
 
 const happyBirthdayObj = (person) => {
 	person.age++;
 	console.log(`Happy Birthday ${person.name}, you are now ${person.age} years old 🥳`);
 }
-happyBirthdayObj(pelle);
-console.log("Reference-Pelles age outside of happyBirthdayObj-function:", pelle.age);
+happyBirthdayObj(bengt);
+console.log("Reference-Bengts age outside of happyBirthdayObj-function:", bengt.age);
+
+console.log("Bengts Twins age outside of happyBirthdayObj-function:", bengtsTwin.age);
+
+// Arrays are also copied/passed by reference
+const names = ["Johan", "Pelle"];
+const friends = names;
+
+friends.push("Agda");
+
+console.log("names:", names);
+console.log("friends:", friends);
+console.log("is `names` and `friends` the same object?", names === friends);  // true

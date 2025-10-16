@@ -1,0 +1,11 @@
+{
+	name: "Little Barksby",
+	species: "Dog",
+	age: 1,
+	hobbies: ["Tail-wagging", "Eating lots of treats", "Car-chasing"],
+	sound: "WOOOFF!",
+	owner: {
+		name: "Mr Beans",
+		age: 57,
+	},
+}
