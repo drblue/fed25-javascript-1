@@ -1,0 +1,32 @@
+# DOM (Document Object Model) Hierarchy
+
+- `html`
+  - `body`
+    - `div.container`
+      - `h1`
+      - `h2#greetings`
+      - `hr`
+      - `ul`
+        - `li`
+          - `a#link-1`
+        - `li`
+          - `a`
+      - `hr`
+      - `div.content`
+        - `p`
+        - `p.error`
+          - `strong`
+        - `ul`
+          - `li`
+          - `li`
+      - `div.alert.alert-danger.error`
+        - `span.secret`
+      - `p`
+      - `hr`
+      - `button.btn.btn-danger`
+      - `hr`
+      - `input#inputName`
+      - `button#btnSayHi.btn.btn-primary`
+      - `hr`
+      - `img`
+    - `script`
