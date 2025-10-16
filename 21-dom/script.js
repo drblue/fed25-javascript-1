@@ -93,9 +93,39 @@ const liEls2 = linkListEl.querySelectorAll("li");
 /**
  * Get and set attributes
  */
+/*
 const memeEl = document.querySelector("img");
 const imgSrc = memeEl.getAttribute("src");
 const cssClasses = memeEl.getAttribute("class");
 const cssClasses2 = memeEl.className;
 
 memeEl.setAttribute("src", "https://media.tenor.com/tNGtfhqJWP0AAAAd/haxor.gif");
+*/
+
+/**
+ * Everyone loves popups!
+ */
+const btnPopupEl = document.querySelector("button");
+console.log("Such button text:", btnPopupEl.innerText);
+
+console.log("Before adding event listener");
+btnPopupEl.addEventListener("click", () => {
+	console.log("Event listener is being called");
+	alert("Stop it, that tickles! 😂");
+});
+console.log("After adding event listener");
+
+/**
+ * Greetings, esteemed user
+ */
+const btnSayHiEl = document.querySelector("#btnSayHi");
+const inputNameEl = document.querySelector("#inputName");
+//const username = inputNameEl.value;  // Won't update because we read value on page load, **NOT** when someone clicks on the button
+
+btnSayHiEl.addEventListener("click", () => {
+	// Get the **CURRENT** value of the input when someone clicks the button
+	const username = inputNameEl.value;
+
+	// Say hi to the nice user
+	alert(`Hi ${username}!`);
+});
