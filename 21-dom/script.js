@@ -73,7 +73,7 @@ h2El.innerText = "Hello " + username;  // yasss! <3
 /**
  * 🧒🏻 Children
  */
-
+/*
 const linkListEl = document.querySelector("ul");
 console.log("linkListEl:", linkListEl);
 console.log("linkListEl's children:", linkListEl.children); // HTMLCollection, does not have `.forEach()`-method but we can access the children using square-bracket (index) notation
@@ -88,3 +88,14 @@ const liEls = Array.from(linkListEl.children);
 
 // OR, we can use `querySelectorAll` on the `linkListEl` (which is a reference to the *first* `<ul>`)
 const liEls2 = linkListEl.querySelectorAll("li");
+*/
+
+/**
+ * Get and set attributes
+ */
+const memeEl = document.querySelector("img");
+const imgSrc = memeEl.getAttribute("src");
+const cssClasses = memeEl.getAttribute("class");
+const cssClasses2 = memeEl.className;
+
+memeEl.setAttribute("src", "https://media.tenor.com/tNGtfhqJWP0AAAAd/haxor.gif");
