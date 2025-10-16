@@ -49,3 +49,19 @@ console.log(firstErrorDivEl.textContent);
 // We can also change the content of an element
 firstParagraphEl.innerText = "Look mom, my first paragraph!";
 firstParagraphEl.innerText += " Oh, hi dad!";
+
+
+// Default to use innerText for plain text, only use innerHTML when you have at least one HTML-tag in the text!
+firstErrorDivEl.innerText = "Such error, much danger, very fail";
+firstErrorDivEl.innerText = "Such <strong>error</strong>, much danger, very fail";  // wont work as it will output "<strong>error</strong>" and not make the text bold
+firstErrorDivEl.innerHTML = "Such <strong>error</strong>, much danger, very fail";
+
+
+/**
+ * Say hi to the user
+ */
+const h2El = document.querySelector("h2#greetings");
+const username = prompt("What are thy name?");
+// console.log("Hello", username);
+// h2El.innerHTML = "Hello " + username;  // BIG NO-NO!
+h2El.innerText = "Hello " + username;  // yasss! <3
