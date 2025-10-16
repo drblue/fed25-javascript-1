@@ -96,6 +96,7 @@ const meowJr = {
 	sound: "meoww",
 }
 
+/*
 console.log("Barksby's hobbies are:", barksby.hobbies.join(", "));
 console.log("Meow Jr's hobbies are:", meowJr.hobbies.join(", "));
 
@@ -106,3 +107,15 @@ console.log(`Barksby's owner's name is: ${barksby.owner.name}`);
 
 console.log("Meow Jr's owner is: " + meowJr.owner); // undefined
 console.log(`Meow Jr's owner's name is: ${meowJr.owner.name}`); // Uncaught TypeError: can't access property "name", meowJr.owner is undefined
+*/
+
+console.debug("This is a debug message");
+console.log("This is a log message");
+console.info("This is a informational message");
+console.warn("This is a warning message");
+console.error("This is a error message");
+
+const pets = [barksby, meowJr];
+
+// Show a nice table
+console.table(pets);
