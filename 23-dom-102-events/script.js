@@ -19,6 +19,11 @@ const todoListEl = document.querySelector("ul");
 
 // Handle click-event on a listitem
 const handleLiClick = (e) => {
+	// 🤫
+	// e.stopPropagation();
+
+	console.log("'stop it, that tickles 😂' said: ", e.target);
+
 	e.target.classList.toggle("completed");
 }
 
@@ -48,5 +53,18 @@ document.querySelector("#add").addEventListener("click", () => {
 // Get all listitems
 document.querySelectorAll("li").forEach( (liEl) => {
 	// Add click-event handler to each listitem
-	liEl.addEventListener("click", handleLiClick);
+	// liEl.addEventListener("click", handleLiClick);
 } );
+
+// Listen for click-events on the list
+todoListEl.addEventListener("click", (e) => {
+	// I gotcha!
+	e.stopPropagation();
+
+	console.log("Hello, I am utbildningsledare, you clicked me!", e.target);
+});
+
+// Listen for EVERY CLICK in the document because I'm a höns-förälder
+document.addEventListener("click", (e) => {
+	console.log("HEEEEEEY!!! WHY U CLICK MY CHILDREN?!");
+});
