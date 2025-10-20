@@ -9,3 +9,14 @@
  * - contains	returns true/false if class exists
  */
 
+// Get reference to DOM-elements
+const todoListEl = document.querySelector("ul");
+
+// Listen for click-events on the "Add"-button
+document.querySelector("#add").addEventListener("click", () => {
+	// GET reference to ALL `li` elements and the LENGTH of that list (array)
+	const liCount = document.querySelectorAll("li").length;
+
+	// Concatenate to the unordered list's innerHTML
+	todoListEl.innerHTML += `<li>listitem ${liCount + 1}</li>`;
+});
