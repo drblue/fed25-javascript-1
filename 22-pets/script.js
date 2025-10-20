@@ -79,5 +79,27 @@ const petsListEl = document.querySelector("#petslist");
 
 // Loop over dem pets
 pets.forEach( (pet) => {
-	petsListEl.innerHTML += `<li>${pet.name} is a ${pet.species} of ${pet.age} year(s) old. His/hers favorite hobbies are ${pet.hobbies.join(", ").toLowerCase()}.</li>`;
+	/*
+	let petOwnerName;
+	if (pet.owner) {
+		petOwnerName = pet.owner.name;
+	} else {
+		petOwnerName = "missing";
+	}
+
+	const petOwnerName = pet.owner ? pet.owner.name : "missing";
+	petsListEl.innerHTML += `<li>${pet.name} is a ${pet.species} of ${pet.age} year(s) old. His/hers owner is ${petOwnerName} and his/hers favorite hobbies are ${pet.hobbies.join(", ").toLowerCase()}.</li>`;
+	*/
+
+	if (pet.owner) {
+		petsListEl.innerHTML += `
+			<li>
+				${pet.name} is a ${pet.species} of ${pet.age} year(s) old. His/hers owner is ${pet.owner.name} and his/hers favorite hobbies are ${pet.hobbies.join(", ").toLowerCase()}.
+			</li>`;
+	} else {
+		petsListEl.innerHTML += `
+			<li>
+				${pet.name} is a ${pet.species} of ${pet.age} year(s) old. His/hers favorite hobbies are ${pet.hobbies.join(", ").toLowerCase()}.
+			</li>`;
+	}
 } );
