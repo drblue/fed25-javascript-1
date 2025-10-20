@@ -64,3 +64,20 @@ const pets = [
 	// 	}
 	// }
 ];
+
+// Old-school 👴🏻
+// document.getElementById
+// document.getElementsByClassName
+// document.getElementsByTagName
+//
+// Modern 🤩
+// document.querySelector
+// document.querySelectorAll
+
+// Get a reference to the DOM-element with ID of `petslist`
+const petsListEl = document.querySelector("#petslist");
+
+// Loop over dem pets
+pets.forEach( (pet) => {
+	petsListEl.innerHTML += `<li>${pet.name} is a ${pet.species} of ${pet.age} year(s) old.</li>`;
+} );
