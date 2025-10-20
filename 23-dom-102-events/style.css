@@ -1,0 +1,21 @@
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.5em;
+}
+
+.completed {
+	color: var(--bs-success);
+	font-style: italic;
+	text-decoration: line-through;
+}
+
+ul {
+	background-color: darkorchid;
+	padding: 1rem 1.25rem;
+}
+
+li {
+	background-color: orchid;
+	cursor: pointer;
+	padding: 0.5rem 0.25rem;
+	margin: 0.5rem 0;
+}
