@@ -17,18 +17,6 @@
 // Get reference to DOM-elements
 const todoListEl = document.querySelector("ul");
 
-// Handle click-event on a listitem
-/*
-const handleLiClick = (e) => {
-	// 🤫
-	// e.stopPropagation();
-
-	console.log("'stop it, that tickles 😂' said: ", e.target);
-
-	e.target.classList.toggle("completed");
-}
-*/
-
 // Listen for click-events on the "Add"-button
 document.querySelector("#add").addEventListener("click", () => {
 	// GET reference to ALL `li` elements and the LENGTH of that list (array)
@@ -38,35 +26,11 @@ document.querySelector("#add").addEventListener("click", () => {
 	// _string_ that contains both the old and the new content
 	todoListEl.innerHTML += `<li>listitem ${liCount + 1}</li>`;
 
-	/*
-	// ANOTHER way to create elements that does NOT replace the old content,
-	// only appends it
-
-	// Create a new `li` element and add some content
-	const newLiEl = document.createElement("li");
-	newLiEl.innerText = `listitem ${liCount + 1}`;
-
-	// Also add a click-event handler to the new listitem
-	// newLiEl.addEventListener("click", handleLiClick);
-
-	// Append the new element to the `ul` list
-	todoListEl.append(newLiEl);
-	*/
+	console.log("I am button first click handler");
 });
-
-// Get all listitems
-/*
-document.querySelectorAll("li").forEach( (liEl) => {
-	// Add click-event handler to each listitem
-	liEl.addEventListener("click", handleLiClick);
-} );
-*/
 
 // Listen for click-events on the list
 todoListEl.addEventListener("click", (e) => {
-	// I gotcha!
-	// e.stopPropagation();
-
 	console.log("Hello, I am UL click handler, you clicked on:", e.target);
 	console.log("The element you clicked on was a:", e.target.tagName);
 
@@ -77,10 +41,3 @@ todoListEl.addEventListener("click", (e) => {
 		e.target.classList.toggle("completed");
 	}
 });
-
-/*
-// Listen for EVERY CLICK in the document because I'm a höns-förälder
-document.addEventListener("click", (e) => {
-	console.log("HEEEEEEY!!! WHY U CLICK MY CHILDREN?!");
-});
-*/
