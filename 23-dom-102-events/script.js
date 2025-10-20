@@ -18,6 +18,7 @@
 const todoListEl = document.querySelector("ul");
 
 // Handle click-event on a listitem
+/*
 const handleLiClick = (e) => {
 	// 🤫
 	// e.stopPropagation();
@@ -26,6 +27,7 @@ const handleLiClick = (e) => {
 
 	e.target.classList.toggle("completed");
 }
+*/
 
 // Listen for click-events on the "Add"-button
 document.querySelector("#add").addEventListener("click", () => {
@@ -34,8 +36,9 @@ document.querySelector("#add").addEventListener("click", () => {
 
 	// Will **REPLACE** all content in the element with a **NEW**
 	// _string_ that contains both the old and the new content
-	// todoListEl.innerHTML += `<li>listitem ${liCount + 1}</li>`;
+	todoListEl.innerHTML += `<li>listitem ${liCount + 1}</li>`;
 
+	/*
 	// ANOTHER way to create elements that does NOT replace the old content,
 	// only appends it
 
@@ -44,27 +47,40 @@ document.querySelector("#add").addEventListener("click", () => {
 	newLiEl.innerText = `listitem ${liCount + 1}`;
 
 	// Also add a click-event handler to the new listitem
-	newLiEl.addEventListener("click", handleLiClick);
+	// newLiEl.addEventListener("click", handleLiClick);
 
 	// Append the new element to the `ul` list
 	todoListEl.append(newLiEl);
+	*/
 });
 
 // Get all listitems
+/*
 document.querySelectorAll("li").forEach( (liEl) => {
 	// Add click-event handler to each listitem
-	// liEl.addEventListener("click", handleLiClick);
+	liEl.addEventListener("click", handleLiClick);
 } );
+*/
 
 // Listen for click-events on the list
 todoListEl.addEventListener("click", (e) => {
 	// I gotcha!
-	e.stopPropagation();
+	// e.stopPropagation();
 
-	console.log("Hello, I am utbildningsledare, you clicked me!", e.target);
+	console.log("Hello, I am UL click handler, you clicked on:", e.target);
+	console.log("The element you clicked on was a:", e.target.tagName);
+
+	// If the clicked element is a LI-tag, then toggle the `completed`
+	// class, otherwise don't do anything
+	if (e.target.tagName === "LI") {
+		// Toggle the `completed` class on the clicked element
+		e.target.classList.toggle("completed");
+	}
 });
 
+/*
 // Listen for EVERY CLICK in the document because I'm a höns-förälder
 document.addEventListener("click", (e) => {
 	console.log("HEEEEEEY!!! WHY U CLICK MY CHILDREN?!");
 });
+*/
