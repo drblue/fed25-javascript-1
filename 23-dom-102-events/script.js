@@ -20,3 +20,22 @@ document.querySelector("#add").addEventListener("click", () => {
 	// Concatenate to the unordered list's innerHTML
 	todoListEl.innerHTML += `<li>listitem ${liCount + 1}</li>`;
 });
+
+// Get all listitems
+document.querySelectorAll("li").forEach( (liEl) => {
+	// Add click-event handler to each listitem
+	liEl.addEventListener("click", (e) => {
+		console.log("'stop it, that tickles!' said:", e.target);
+
+		// If target has class `completed`, remove it
+		// If target DOES NOT have class `completed`, add it
+		/*
+		if (e.target.classList.contains("completed")) {
+			e.target.classList.remove("completed");
+		} else {
+			e.target.classList.add("completed");
+		}
+		*/
+		e.target.classList.toggle("completed");
+	});
+} );
