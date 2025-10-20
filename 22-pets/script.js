@@ -79,5 +79,5 @@ const petsListEl = document.querySelector("#petslist");
 
 // Loop over dem pets
 pets.forEach( (pet) => {
-	petsListEl.innerHTML += `<li>${pet.name} is a ${pet.species} of ${pet.age} year(s) old.</li>`;
+	petsListEl.innerHTML += `<li>${pet.name} is a ${pet.species} of ${pet.age} year(s) old. His/hers favorite hobbies are ${pet.hobbies.join(", ").toLowerCase()}.</li>`;
 } );
