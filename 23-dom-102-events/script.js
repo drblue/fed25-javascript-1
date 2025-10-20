@@ -12,30 +12,36 @@
 // Get reference to DOM-elements
 const todoListEl = document.querySelector("ul");
 
+// Handle click-event on a listitem
+const handleLiClick = (e) => {
+	e.target.classList.toggle("completed");
+}
+
 // Listen for click-events on the "Add"-button
 document.querySelector("#add").addEventListener("click", () => {
 	// GET reference to ALL `li` elements and the LENGTH of that list (array)
 	const liCount = document.querySelectorAll("li").length;
 
-	// Concatenate to the unordered list's innerHTML
-	todoListEl.innerHTML += `<li>listitem ${liCount + 1}</li>`;
+	// Will **REPLACE** all content in the element with a **NEW**
+	// _string_ that contains both the old and the new content
+	// todoListEl.innerHTML += `<li>listitem ${liCount + 1}</li>`;
+
+	// ANOTHER way to create elements that does NOT replace the old content,
+	// only appends it
+
+	// Create a new `li` element and add some content
+	const newLiEl = document.createElement("li");
+	newLiEl.innerText = `listitem ${liCount + 1}`;
+
+	// Also add a click-event handler to the new listitem
+	newLiEl.addEventListener("click", handleLiClick);
+
+	// Append the new element to the `ul` list
+	todoListEl.append(newLiEl);
 });
 
 // Get all listitems
 document.querySelectorAll("li").forEach( (liEl) => {
 	// Add click-event handler to each listitem
-	liEl.addEventListener("click", (e) => {
-		console.log("'stop it, that tickles!' said:", e.target);
-
-		// If target has class `completed`, remove it
-		// If target DOES NOT have class `completed`, add it
-		/*
-		if (e.target.classList.contains("completed")) {
-			e.target.classList.remove("completed");
-		} else {
-			e.target.classList.add("completed");
-		}
-		*/
-		e.target.classList.toggle("completed");
-	});
+	liEl.addEventListener("click", handleLiClick);
 } );
