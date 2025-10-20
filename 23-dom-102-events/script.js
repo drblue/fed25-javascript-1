@@ -34,10 +34,16 @@ todoListEl.addEventListener("click", (e) => {
 	console.log("Hello, I am UL click handler, you clicked on:", e.target);
 	console.log("The element you clicked on was a:", e.target.tagName);
 
-	// If the clicked element is a LI-tag, then toggle the `completed`
-	// class, otherwise don't do anything
-	if (e.target.tagName === "LI") {
-		// Toggle the `completed` class on the clicked element
-		e.target.classList.toggle("completed");
+	// If the clicked element is a LI-tag and it does HAS the
+	// `completed` class, remove the element.
+	// Otherwise, if the clicked element is a LI-tag (that does not have
+	// the `completed` class), add the `completed` class.
+	if (e.target.tagName === "LI" && e.target.classList.contains("completed")) {
+		// It was completed, let's remove it entirely
+		e.target.remove();
+
+	} else if (e.target.tagName === "LI") {
+		// Add the `completed` class on the clicked element
+		e.target.classList.add("completed");
 	}
 });
