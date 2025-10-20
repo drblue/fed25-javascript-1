@@ -17,6 +17,7 @@
 // Get reference to DOM-elements
 const todoListEl = document.querySelector("ul");
 
+/*
 // Listen for click-events on the "Add"-button
 document.querySelector("#add").addEventListener("click", () => {
 	// GET reference to ALL `li` elements and the LENGTH of that list (array)
@@ -27,6 +28,21 @@ document.querySelector("#add").addEventListener("click", () => {
 	todoListEl.innerHTML += `<li>listitem ${liCount + 1}</li>`;
 
 	console.log("I am button first click handler");
+});
+*/
+
+// Listen for when the form is being submitted
+document.querySelector("form").addEventListener("submit", (e) => {
+	// Stop form from being submitted (and causing a page reload)
+	e.preventDefault();
+
+	// Get value from input-field
+	const title = document.querySelector("#title").value;
+
+	// Add a new listitem with the title to the list
+	todoListEl.innerHTML += `<li>${title}</li>`;
+
+	// Profit 💰
 });
 
 // Listen for click-events on the list
