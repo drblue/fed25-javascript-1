@@ -47,3 +47,17 @@ todoListEl.addEventListener("click", (e) => {
 		e.target.classList.add("completed");
 	}
 });
+
+// 🏨
+document.querySelector("a").addEventListener("click", (e) => {
+	// This will be executed whenever someone clicks on the link
+	console.log("Such click, much link, very internetz");
+
+	// You can check in anytime you like but you can never leave
+	// Prevent user from ever leaving our site 😈 (*MOHAHAHA*)
+	e.preventDefault();
+
+	// Taunt user 😎
+	alert("You can check in anytime you like but you can never leave 😈");
+	// window.location.href = "https://www.bing.com";
+});
