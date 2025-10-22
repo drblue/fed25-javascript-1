@@ -140,9 +140,24 @@ students.sort( (a, b) => {
 students.reverse();
 */
 
+/*
 // Sort array based on number of points in reverse order (VERSION 2)
 students.sort( (a, b) => {
 	return b.points - a.points;
 } );
+*/
+
+// Sort students by their name
+students.sort((a, b) => {
+	if (a.name < b.name) {
+		return -1;
+	}
+
+	if (a.name > b.name) {
+		return 1;
+	}
+
+	return 0;
+});
 
 console.log("Students after sort:", students);
