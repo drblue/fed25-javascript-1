@@ -1,0 +1,4 @@
+{
+	name: "Alicia",
+	points: 8844,
+}

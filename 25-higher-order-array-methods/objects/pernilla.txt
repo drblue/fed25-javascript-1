@@ -1,0 +1,4 @@
+{
+	name: "Pernilla",
+	points: -3,
+}
