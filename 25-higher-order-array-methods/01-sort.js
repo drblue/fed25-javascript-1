@@ -26,6 +26,7 @@ console.log("Names in reverse alphabetical order 🤪:", names);
 */
 
 // numbers
+// const numbers = [ 47, 5, 21, 50, 28, 18, 47, 13, 24, 8, 18, 15, 11, 43, 7, 102, 1337, 33, 52 ];
 const numbers = [ 47, 5, 28, 1337, 50, 21 ];
 console.log("Numbers in chaos:", numbers);
 
@@ -34,23 +35,46 @@ console.log("Numbers in chaos:", numbers);
 // console.log("Numbers in proper(?) order:", numbers);
 
 // ACTUALLY sort numbers numerically
+/*
 numbers.sort( (a, b) => {
-	console.log(`comparing a: ${a} vs b: ${b}`);
+	console.log(`comparing a: ${a} vs b: ${b}. a-b (${a}-${b}) =`, a - b);
 
-	// if `a` is less than `b` (i.e. `a` should be sorted BEFORE `b`)
-	if (a < b) {
-		console.log(`${a} is less than ${b} and should be placed BEFORE`);
-		return -1;
-	}
+	return a - b;
 
-	// if `a` is greater than `b` (i.e. `a` should be sorted AFTER `b`)
-	if (a > b) {
-		console.log(`${a} is greater than ${b} and should be placed AFTER`);
-		return 1;
-	}
+	// Possible, but considered BAD PRACTICE to nest ternary operators
+	// return (a < b)
+	// 	? -1
+	// 	: ((a > b)
+	// 		? 1
+	// 		: 0);
 
-	console.log(`${a} is equal to ${b}`);
-	return 0;
+	// // if `a` is less than `b` (i.e. `a` should be sorted BEFORE `b`)
+	// if (a < b) {
+	// 	// console.log(`${a} is less than ${b} and should be placed BEFORE`);
+	// 	return -1;
+	// }
+
+	// // if `a` is greater than `b` (i.e. `a` should be sorted AFTER `b`)
+	// if (a > b) {
+	// 	// console.log(`${a} is greater than ${b} and should be placed AFTER`);
+	// 	return 1;
+	// }
+
+	// // console.log(`${a} is equal to ${b}`);
+	// return 0;
 } );
+*/
+
+// A more compact, shorter version of above if-statements
+/*
+numbers.sort( (a, b) => {
+	return a - b;
+});
+*/
+
+// EVEN SHORTER NUMBER SORTING using a one-liner 🤯
+// It is exactly the same as the above compact, shorter version
+// but without curly brackets `{}` and the `return` statement
+numbers.sort( (a, b) => a - b );
 
 console.log("Numbers in proper! order:", numbers);
