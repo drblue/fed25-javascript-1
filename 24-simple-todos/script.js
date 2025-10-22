@@ -23,6 +23,7 @@
 // Get references to DOM elements
 const todolistEl = document.querySelector("#todolist");
 const formCreateTodoEl = document.querySelector("#formCreateTodo");
+const inputNewTodoTitleEl = document.querySelector("#inputNewTodoTitle");
 
 // List of todos
 const todos = [
@@ -50,17 +51,28 @@ formCreateTodoEl.addEventListener("submit", (e) => {
 	e.preventDefault();
 
 	// Get title from input-field
+	const newTodoTitle = inputNewTodoTitleEl.value;
 
-	// Abort if input is empty
+	// if input is NOT empty
+	if (newTodoTitle === "") {
+		alert("No todo for you!");
+		return;
+	}
 
 	// Create a new todo-object
+	const newTodo = {
+		title: newTodoTitle,
+		completed: false,
+	}
 
 	// Add it to the todos-array
+	todos.push(newTodo);
 
 	// Render a representation of the updated todos-array
 	renderTodos();
 
 	// Finally, clear the input-field
+	inputNewTodoTitleEl.value = "";
 });
 
 // Render a representation of the todos-array to the DOM
