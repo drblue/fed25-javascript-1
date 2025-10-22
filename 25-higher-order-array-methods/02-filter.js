@@ -24,6 +24,7 @@ numbers.forEach((num) => {
 });
 */
 
+/*
 // Filter out all numbers >= 25 into a new array
 const largeNumbers = numbers.filter((num) => {
 	if (num >= 25) {
@@ -32,5 +33,25 @@ const largeNumbers = numbers.filter((num) => {
 		return false;  // NOPE, exclude this number from the new array
 	}
 });
+*/
+
+/*
+// Filter out all numbers >= 25 into a new array (shorter)
+const largeNumbers = numbers.filter((num) => {
+	return (num >= 25)
+		? true
+		: false;
+});
+*/
+
+/*
+// Filter out all numbers >= 25 into a new array (EVEN shorter!!!)
+const largeNumbers = numbers.filter((num) => {
+	return num >= 25;
+});
+*/
+
+// Filter out all numbers >= 25 (OMG ITS SO SHORT!!!!!!!!!!!!! 🤯🤯🤯)
+const largeNumbers = numbers.filter((num) => num >= 25);
 
 console.log("Large numbers:", largeNumbers);
