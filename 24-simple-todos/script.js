@@ -41,7 +41,7 @@ const todos = [
 	},
 	{
 		title: "Take over the world",
-		completed: true,
+		completed: false,
 	},
 ];
 
@@ -73,6 +73,30 @@ formCreateTodoEl.addEventListener("submit", (e) => {
 
 	// Finally, clear the input-field
 	inputNewTodoTitleEl.value = "";
+});
+
+// Listen for click-events on the todo list
+todolistEl.addEventListener("click", (e) => {
+	console.log("You clicked on either the whole list or one of its children:", e.target);
+
+	if (e.target.tagName === "LI") {
+		// User clicked on a listitem
+		console.log("You clicked on a todo with the title:", e.target.innerText);
+
+		// Loop over todos and check if title matches the clicked target's innerText
+		todos.forEach((todo) => {
+			console.log(`is "${todo.title}" the same as "${e.target.innerText}"?`)
+
+			if (todo.title === e.target.innerText) {
+				// yay it's a match ❤️
+				// console.log("yay it's a match ❤️", todo);
+				todo.completed = true;
+			}
+		});
+
+		// Re-render todos so the DOM reflects the current truth
+		renderTodos();
+	}
 });
 
 // Render a representation of the todos-array to the DOM
