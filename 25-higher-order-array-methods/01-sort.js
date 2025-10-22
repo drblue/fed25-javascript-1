@@ -27,8 +27,8 @@ console.log("Names in reverse alphabetical order 🤪:", names);
 
 // numbers
 // const numbers = [ 47, 5, 21, 50, 28, 18, 47, 13, 24, 8, 18, 15, 11, 43, 7, 102, 1337, 33, 52 ];
-const numbers = [ 47, 5, 28, 1337, 50, 21 ];
-console.log("Numbers in chaos:", numbers);
+// const numbers = [ 47, 5, 28, 1337, 50, 21 ];
+// console.log("Numbers in chaos:", numbers);
 
 // Sort numbers (won't sort numerically)
 // numbers.sort();
@@ -75,6 +75,74 @@ numbers.sort( (a, b) => {
 // EVEN SHORTER NUMBER SORTING using a one-liner 🤯
 // It is exactly the same as the above compact, shorter version
 // but without curly brackets `{}` and the `return` statement
-numbers.sort( (a, b) => a - b );
+// numbers.sort( (a, b) => a - b );
 
-console.log("Numbers in proper! order:", numbers);
+// console.log("Numbers in proper! order:", numbers);
+
+/**
+ * Sort objects based on a property
+ */
+const students = [
+	{
+		name: "Johan",
+		points: 1337,
+	},
+	{
+		name: "Pernilla",
+		points: -3,
+	},
+	{
+		name: "Alicia",
+		points: 88,
+	},
+	{
+		name: "Maja",
+		points: 35,
+	},
+	{
+		name: "Elliot",
+		points: 42,
+	},
+];
+
+// Log students before sorting
+console.log("Students before sort:", students);
+
+// Sort array based on number of points (lowest first)
+/*
+students.sort( (a, b) => {
+	console.log(a, b);
+
+	if (a.points < b.points) {
+		return -1;
+	}
+
+	if (a.points > b.points) {
+		return 1;
+	}
+
+	return 0;
+} );
+*/
+
+/*
+// Sort array based on number of points (lowest first) - SHORT VERSION
+students.sort( (a, b) => {
+	return a.points - b.points;
+} );
+*/
+
+/*
+// Sort array based on number of points in reverse order (VERSION 1)
+students.sort( (a, b) => {
+	return a.points - b.points;
+} );
+students.reverse();
+*/
+
+// Sort array based on number of points in reverse order (VERSION 2)
+students.sort( (a, b) => {
+	return b.points - a.points;
+} );
+
+console.log("Students after sort:", students);
