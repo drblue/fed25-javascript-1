@@ -84,7 +84,7 @@ numbers.sort( (a, b) => {
  */
 const students = [
 	{
-		name: "Johan",
+		name: "johan",
 		points: 1337,
 	},
 	{
@@ -92,7 +92,7 @@ const students = [
 		points: -3,
 	},
 	{
-		name: "Alicia",
+		name: "alicia",
 		points: 88,
 	},
 	{
@@ -149,11 +149,11 @@ students.sort( (a, b) => {
 
 // Sort students by their name
 students.sort((a, b) => {
-	if (a.name < b.name) {
+	if (a.name.toLowerCase() < b.name.toLowerCase()) {
 		return -1;
 	}
 
-	if (a.name > b.name) {
+	if (a.name.toLowerCase() > b.name.toLowerCase()) {
 		return 1;
 	}
 
