@@ -14,10 +14,22 @@
 const numbers = [ 42, 5, 21, 50, 24, 18, 47 ];
 console.log("Original numbers:", numbers);
 
+/*
+// Push all numbers >= 25 into a new array
 const largeNumbers = [];
 numbers.forEach((num) => {
 	if (num >= 25) {
 		largeNumbers.push(num);
+	}
+});
+*/
+
+// Filter out all numbers >= 25 into a new array
+const largeNumbers = numbers.filter((num) => {
+	if (num >= 25) {
+		return true;  // YES, this number should be in the new array
+	} else {
+		return false;  // NOPE, exclude this number from the new array
 	}
 });
 
