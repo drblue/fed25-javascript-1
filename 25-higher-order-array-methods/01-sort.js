@@ -84,11 +84,11 @@ numbers.sort( (a, b) => {
  */
 const students = [
 	{
-		name: "johan",
+		name: "olle",
 		points: 1337,
 	},
 	{
-		name: "Pernilla",
+		name: "Örjan",
 		points: -3,
 	},
 	{
@@ -96,7 +96,11 @@ const students = [
 		points: 88,
 	},
 	{
-		name: "Maja",
+		name: "Älvin",
+		points: 88,
+	},
+	{
+		name: "Åke",
 		points: 35,
 	},
 	{
@@ -147,7 +151,8 @@ students.sort( (a, b) => {
 } );
 */
 
-// Sort students by their name
+/*
+// Sort students by their name (case insensitive)
 students.sort((a, b) => {
 	if (a.name.toLowerCase() < b.name.toLowerCase()) {
 		return -1;
@@ -158,6 +163,12 @@ students.sort((a, b) => {
 	}
 
 	return 0;
+});
+*/
+
+// Sort students by their name, case insensitive and locale (swedish) aware
+students.sort((a, b) => {
+	return a.name.localeCompare(b.name, "sv");
 });
 
 console.log("Students after sort:", students);
