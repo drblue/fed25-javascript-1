@@ -40,7 +40,7 @@ const todos = [
 	},
 	{
 		title: "Take over the world",
-		completed: false,
+		completed: true,
 	},
 ];
 
@@ -66,10 +66,52 @@ formCreateTodoEl.addEventListener("submit", (e) => {
 // Render a representation of the todos-array to the DOM
 const renderTodos = () => {
 	// Clear any existing listitems from the DOM
+	todolistEl.innerHTML = "";
 
 	// Loop over the todos-array and create a new listitem for each todoitem
+	todos.forEach((todo) => {
+		// Create a new listitem for each todo
+		// Any completed items should also have the `completed` CSS-class!
 
-	// Any completed items should also have the `completed` CSS-class!
+		/*
+		if (todo.completed) {
+			todolistEl.innerHTML += `<li class="list-group-item completed">${todo.title}</li>`;
+		} else {
+			todolistEl.innerHTML += `<li class="list-group-item">${todo.title}</li>`;
+		}
+		*/
+
+		/*
+		todolistEl.innerHTML += todo.completed
+			? `<li class="list-group-item completed">${todo.title}</li>`
+			: `<li class="list-group-item">${todo.title}</li>`;
+		*/
+
+		/*
+		todolistEl.innerHTML +=
+			`<li class="list-group-item ${todo.completed ? "completed" : ""}">
+				${todo.title}
+			</li>`;
+		*/
+
+		/*
+		const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
+		todolistEl.innerHTML += `<li class="${cssClasses}">${todo.title}</li>`;
+		*/
+
+		// Create a new li element
+		const newTodoEl = document.createElement("li");
+		newTodoEl.innerText = todo.title;
+		newTodoEl.classList.add("list-group-item");
+
+		if (todo.completed) {
+			newTodoEl.classList.add("completed");
+		}
+
+		// Append the new li-element to the list
+		todolistEl.append(newTodoEl);
+	});
+
 }
 
 // Render the initial representation of the todos-array
