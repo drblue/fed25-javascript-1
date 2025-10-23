@@ -96,8 +96,8 @@ todolistEl.addEventListener("click", (e) => {
 			return;
 		}
 
-		// Set completed to true on the found todo
-		clickedTodo.completed = true;
+		// Set completed to the opposite of its current value on the found todo
+		clickedTodo.completed = !clickedTodo.completed;
 
 		// Re-render todos so the DOM reflects the current truth
 		renderTodos();
