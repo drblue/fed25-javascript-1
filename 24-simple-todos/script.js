@@ -68,6 +68,9 @@ formCreateTodoEl.addEventListener("submit", (e) => {
 	// Add it to the todos-array
 	todos.push(newTodo);
 
+	// Sort todos by title
+	sortTodos();
+
 	// Render a representation of the updated todos-array
 	renderTodos();
 
@@ -149,6 +152,17 @@ const renderTodos = () => {
 	});
 
 }
+
+// Function for sorting the todos
+const sortTodos = () => {
+	// Sort by title
+	todos.sort((a, b) => {
+		return a.title.localeCompare(b.title);
+	});
+}
+
+// Actually sort the todos
+sortTodos();
 
 // Render the initial representation of the todos-array
 renderTodos();
