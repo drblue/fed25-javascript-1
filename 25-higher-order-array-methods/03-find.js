@@ -78,3 +78,40 @@ const firstPassedStudent = students.find((student) => {
 	return student.points >= 40;
 });
 console.log("First student who passed the exam:", firstPassedStudent);
+
+const products = [
+	{
+		sku: "CORR-BWL",
+		name: "Corrosive bowl",
+		in_stock: 321,
+		price: 0.99,
+	},
+	{
+		sku: "CTN-SPCE",
+		name: "Cotton spice rack",
+		in_stock: 2,
+		price: 149.99,
+	},
+	{
+		sku: "GOOD-COOKIES",
+		name: "Inside-out Oreo cookies",
+		in_stock: 18,
+		price: 2.49,
+	},
+	{
+		sku: "BACK-BREAKER",
+		name: "The uncomfortable broom",
+		in_stock: 1,
+		price: 28.65,
+	},
+];
+
+// Find the product with the sku `GOOD-COOKIES`
+const nomNomProduct = products.find((product) => {
+	return product.sku === "BAD-COOKIES";
+});
+if (nomNomProduct) {
+	console.log("YAY FOUND COOKIES!", nomNomProduct);
+} else {
+	console.log("SAD COOKIE MONSTER 🥺", nomNomProduct);
+}
