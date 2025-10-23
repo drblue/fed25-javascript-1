@@ -86,16 +86,18 @@ todolistEl.addEventListener("click", (e) => {
 		// User clicked on a listitem
 		console.log("You clicked on a todo with the title:", e.target.innerText);
 
-		// Loop over todos and check if title matches the clicked target's innerText
-		todos.forEach((todo) => {
-			console.log(`is "${todo.title}" the same as "${e.target.innerText}"?`)
-
-			if (todo.title === e.target.innerText) {
-				// yay it's a match ❤️
-				// console.log("yay it's a match ❤️", todo);
-				todo.completed = true;
-			}
+		// Search todos for the todo with the matching title
+		const clickedTodo = todos.find((todo) => {
+			return todo.title === e.target.innerText;
 		});
+
+		// If no todo was found, bail
+		if (!clickedTodo) {
+			return;
+		}
+
+		// Set completed to true on the found todo
+		clickedTodo.completed = true;
 
 		// Re-render todos so the DOM reflects the current truth
 		renderTodos();
