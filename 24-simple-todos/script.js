@@ -51,7 +51,7 @@ formCreateTodoEl.addEventListener("submit", (e) => {
 	e.preventDefault();
 
 	// Get title from input-field
-	const newTodoTitle = inputNewTodoTitleEl.value;
+	const newTodoTitle = inputNewTodoTitleEl.value.trim();
 
 	// if input is NOT empty
 	if (newTodoTitle === "") {
