@@ -18,6 +18,14 @@ btnScareEl.addEventListener("click", () => {
 
 		// show ghost
 		ghostEl.classList.remove("hide");
+
+		// start timer for showing button
+		setTimeout(() => {
+			console.log("Show button again... ✅");
+			ghostEl.classList.add("hide");  // hide ghost
+			btnScareEl.classList.remove("hide");  // show button again
+		}, 4000);
+
 	}, 5000);
 
 	console.log("Timer has started, prepare to be scaaaaarreeeed 🦇");
