@@ -131,9 +131,7 @@ const renderTodos = () => {
 	// Map over the unfinished todos and _transform_ each todo into a string
 	todolistEl.innerHTML = unfinishedTodos
 		.map((todo) => {
-			const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
-
-			return `<li class="${cssClasses}">
+			return `<li class="list-group-item">
 					<span>${todo.title}</span>
 					<button class="btn btn-danger btn-sm">Delete</button>
 				</li>`;
@@ -143,9 +141,7 @@ const renderTodos = () => {
 	// Map over the finished todos and _transform_ each todo into a string
 	completedTodolistEl.innerHTML = finishedTodos
 		.map((todo) => {
-			const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
-
-			return `<li class="${cssClasses}">
+			return `<li class="list-group-item">
 					<span>${todo.title}</span>
 					<button class="btn btn-danger btn-sm">Delete</button>
 				</li>`;
