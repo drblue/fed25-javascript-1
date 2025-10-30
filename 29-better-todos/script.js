@@ -12,18 +12,22 @@ const inputNewTodoTitleEl = document.querySelector("#inputNewTodoTitle");
 // List of todos
 let todos = [
 	{
+		id: 13,
 		title: "Eat",
 		completed: false,
 	},
 	{
+		id: 28,
 		title: "Code",
 		completed: true,
 	},
 	{
+		id: 73,
 		title: "Sleep",
 		completed: false,
 	},
 	{
+		id: 44,
 		title: "Take over the world",
 		completed: false,
 	},
@@ -43,8 +47,25 @@ formCreateTodoEl.addEventListener("submit", (e) => {
 		return;
 	}
 
+	/*
+	// Find the highest ID for a todo using map + Math.max and spread 🧘
+	const todoIds = todos.map((todo) => {
+		return todo.id;
+	})
+	const maxId = Math.max(0, ...todoIds);
+	*/
+
+	// Find the highest ID for a todo using reduce
+	const maxId = todos.reduce((max, todo) => {
+		if (todo.id > max) {
+			return todo.id;
+		}
+		return max;
+	}, 0);
+
 	// Create a new todo-object
 	const newTodo = {
+		id: maxId + 1,
 		title: newTodoTitle,
 		completed: false,
 	}
