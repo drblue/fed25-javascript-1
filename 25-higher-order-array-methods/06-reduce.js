@@ -110,5 +110,15 @@ const products = [
 	},
 ];
 
+// Calculate total price for one of each product
+const totalPriceForOneOfEachProduct = products.reduce((sum, product) => {
+	return sum + product.price;
+}, 0);
+console.log("Total price for one of each item is:", totalPriceForOneOfEachProduct);
+
 // Calculate *total* stock value for ALL products
 // The correct value is ($ 691.24)
+const totalStockValue = products.reduce((sum, product) => {
+	return sum + (product.price * product.in_stock);
+}, 0);
+console.log("Total stock value is:", totalStockValue);
