@@ -67,10 +67,10 @@ formGuessEl.addEventListener("submit", (e) => {
 	// Check if guess was correct
 	if (guess === correctNumber) {
 		// YAY
-		alert("OMG YAS!!");
+		turnoutEl.innerText = `${guess} is correct! 🥳`
 
 	} else {
 		// NEIN!!!!!!!!!!!!!!!111
-		alert("Skräddaren säger NEJ, det blir ett bestämt NEJ");
+		turnoutEl.innerText = `${guess} is wrong! 😔`
 	}
 });
