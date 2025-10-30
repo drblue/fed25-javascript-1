@@ -43,21 +43,31 @@ const getRandomNumber = (max = 10) => {
 	return Math.floor( Math.random() * max ) + 1;
 }
 
+// Function for starting a new game
+const startGame = () => {
+	// Get a number to guess
+	correctNumber = getRandomNumber();
+
+	// Reset number of attempts to 0
+	attempts = 0;
+
+	// Update DOM with guesses made
+	updateGuesses(attempts);
+
+	// I'm a cheatah 🐆
+	cheatEl.innerText = correctNumber;
+}
+
+// Function for updating DOM with guesses made
+const updateGuesses = (nbrOfGuesses) => {
+	guessesEl.innerText = (nbrOfGuesses === 1)
+		? `${nbrOfGuesses} guess`
+		: `${nbrOfGuesses} guesses`;
+}
+
 // Variables to store game state in
 let correctNumber;
 let attempts;
-
-// Get a number to guess
-correctNumber = getRandomNumber();
-
-// Reset number of attempts to 0
-attempts = 0;
-
-// Update DOM with guesses made
-guessesEl.innerText = `${attempts} guesses`;
-
-// I'm a cheatah 🐆
-cheatEl.innerText = correctNumber;
 
 // Listen for when the form is being submitted
 formGuessEl.addEventListener("submit", (e) => {
@@ -71,7 +81,7 @@ formGuessEl.addEventListener("submit", (e) => {
 	attempts++;
 
 	// Update DOM with guesses made
-	guessesEl.innerText = `${attempts} guesses`;
+	updateGuesses(attempts);
 
 	// Check if guess was correct
 	if (guess === correctNumber) {
@@ -100,17 +110,8 @@ formGuessEl.addEventListener("submit", (e) => {
 
 // Listen for when the form is being reset/"New game" is clicked
 formGuessEl.addEventListener("reset", () => {
-	// Get a number to guess
-	correctNumber = getRandomNumber();
-
-	// Reset number of attempts to 0
-	attempts = 0;
-
-	// Update DOM with guesses made
-	guessesEl.innerText = `${attempts} guesses`;
-
-	// I'm a cheatah 🐆
-	cheatEl.innerText = correctNumber;
+	// Start a new game
+	startGame();
 
 	// Empty previous turnout
 	turnoutEl.innerText = "";
@@ -121,3 +122,6 @@ formGuessEl.addEventListener("reset", () => {
 	// Re-enable user guessing
 	btnGetLuckyEl.removeAttribute("disabled");
 });
+
+// Start a new game once everything has been defined/added
+startGame();
