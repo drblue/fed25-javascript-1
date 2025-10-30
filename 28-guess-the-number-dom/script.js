@@ -42,3 +42,35 @@ const turnoutEl = document.querySelector('#turnout');
 const getRandomNumber = (max = 10) => {
 	return Math.floor( Math.random() * max ) + 1;
 }
+
+// Variables to store game state in
+let correctNumber;
+let attempts;
+
+// Get a number to guess
+correctNumber = getRandomNumber();
+
+// Reset number of attempts to 0
+attempts = 0;
+
+// I'm a cheatah 🐆
+cheatEl.innerText = correctNumber;
+
+// Listen for when the form is being submitted
+formGuessEl.addEventListener("submit", (e) => {
+	// Stop form from being submitted to the server (and causing a page reload)
+	e.preventDefault();
+
+	// Get guess from input-field
+	const guess = Number(inputGuessEl.value);
+
+	// Check if guess was correct
+	if (guess === correctNumber) {
+		// YAY
+		alert("OMG YAS!!");
+
+	} else {
+		// NEIN!!!!!!!!!!!!!!!111
+		alert("Skräddaren säger NEJ, det blir ett bestämt NEJ");
+	}
+});
