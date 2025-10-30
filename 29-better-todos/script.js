@@ -62,102 +62,74 @@ formCreateTodoEl.addEventListener("submit", (e) => {
 	inputNewTodoTitleEl.value = "";
 });
 
-// Listen for click-events on the todo list
-todolistEl.addEventListener("click", (e) => {
-	console.log("You clicked on either the whole list or one of its children:", e.target);
+// Get ALL todos lists and listen for dem clicks
+document.querySelectorAll("ul.todos").forEach((listEl) => {
 
-	if (e.target.tagName === "SPAN") {
-		// User clicked on a span
-		console.log("You clicked on a todo with the title:", e.target.innerText);
+	// Listen for click-events on the todo list
+	listEl.addEventListener("click", (e) => {
+		console.log("You clicked on either the whole list or one of its children:", e.target);
 
-		// Search todos for the todo with the matching title
-		const clickedTodo = todos.find((todo) => {
-			return todo.title === e.target.innerText;
-		});
+		if (e.target.tagName === "SPAN") {
+			// User clicked on a span
+			console.log("You clicked on a todo with the title:", e.target.innerText);
 
-		// If no todo was found, bail
-		if (!clickedTodo) {
-			return;
+			// Search todos for the todo with the matching title
+			const clickedTodo = todos.find((todo) => {
+				return todo.title === e.target.innerText;
+			});
+
+			// If no todo was found, bail
+			if (!clickedTodo) {
+				return;
+			}
+
+			// Set completed to the opposite of its current value on the found todo
+			clickedTodo.completed = !clickedTodo.completed;
+
+			// Re-render todos so the DOM reflects the current truth
+			renderTodos();
+
+		} else if (e.target.tagName === "BUTTON") {
+			// User clicked on a button
+
+			// Get the button's parent element
+			const parentLiElement = e.target.parentElement;
+
+			// From the parent element's POV, get the first span-element
+			const todoTitleEl = parentLiElement.querySelector("span");
+
+			// Get the todo title from the innerText of the span
+			const clickedTodoTitle = todoTitleEl.innerText;
+
+			// Using filter to get all todos that are NOT matching
+			// the title of the todo we want to remove
+			todos = todos.filter((todo) => {
+				return todo.title !== clickedTodoTitle;
+			});
+
+			// Render updated todos
+			renderTodos();
 		}
+	});
 
-		// Set completed to the opposite of its current value on the found todo
-		clickedTodo.completed = !clickedTodo.completed;
-
-		// Re-render todos so the DOM reflects the current truth
-		renderTodos();
-
-	} else if (e.target.tagName === "BUTTON") {
-		// User clicked on a button
-
-		// Get the button's parent element
-		const parentLiElement = e.target.parentElement;
-
-		// From the parent element's POV, get the first span-element
-		const todoTitleEl = parentLiElement.querySelector("span");
-
-		// Get the todo title from the innerText of the span
-		const clickedTodoTitle = todoTitleEl.innerText;
-
-		/*
-		// Search todos for the todo with the matching title
-		const clickedTodoIndex = todos.findIndex((todo) => {
-			return todo.title === clickedTodoTitle;
-		});
-		// ✂️🎞️
-		console.log("Todo to delete is at index:", clickedTodoIndex);
-		todos.splice(clickedTodoIndex, 1);
-		*/
-
-		// Using filter to get all todos that are NOT matching
-		// the title of the todo we want to remove
-		todos = todos.filter((todo) => {
-			return todo.title !== clickedTodoTitle;
-		});
-
-		// Render updated todos
-		renderTodos();
-	}
 });
 
 // Render a representation of the todos-array to the DOM
 const renderTodos = () => {
-
-	// 😤
-	/*
-	let output = [];
-
-	// Loop over the todos-array and create a new string-representation for each todoitem
-	todos.forEach((todo) => {
-		const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
-
-		// Push a string-representation of the todo to the `output`-array
-		output.push(
-			`<li class="${cssClasses}">
-				<span>${todo.title}</span>
-				<button class="btn btn-danger btn-sm">Delete</button>
-			</li>`);
+	// Get a list of all todos that **are not** completed (i.e. has `completed` set to `false`)
+	const unfinishedTodos = todos.filter((todo) => {
+		return todo.completed === false;   // return !todo.completed
 	});
-	*/
+	// console.log("unfinishedTodos:", unfinishedTodos);
 
-	/*
-	// 🤗
-	const output = todos.map((todo) => {
-		const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
+	// Get a list of all todos that **are** completed (i.e. has `completed` set to `true`)
+	const finishedTodos = todos.filter((todo) => {
+		return todo.completed === true;   // return todo.completed
+	});
+	// console.log("finishedTodos:", finishedTodos);
 
-		return `<li class="${cssClasses}">
-				<span>${todo.title}</span>
-				<button class="btn btn-danger btn-sm">Delete</button>
-			</li>`;
-	});  // Array [string, string, string, string]
-
-	console.log("output, but with map:", output)
-
-	// Output `output` to DOM
-	todolistEl.innerHTML = output.join("");
-	*/
-
-	// 🤩🚀💫
-	todolistEl.innerHTML = todos
+	// Map over the unfinished todos and _transform_ each todo into a string
+	todolistEl.innerHTML = unfinishedTodos
 		.map((todo) => {
 			const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
 
@@ -166,7 +138,19 @@ const renderTodos = () => {
 					<button class="btn btn-danger btn-sm">Delete</button>
 				</li>`;
 		})
-		.join("");  // String "<li></li><li></li><li></li><li></li>"
+		.join("");
+
+	// Map over the finished todos and _transform_ each todo into a string
+	completedTodolistEl.innerHTML = finishedTodos
+		.map((todo) => {
+			const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
+
+			return `<li class="${cssClasses}">
+					<span>${todo.title}</span>
+					<button class="btn btn-danger btn-sm">Delete</button>
+				</li>`;
+		})
+		.join("");
 }
 
 // Function for sorting the todos
