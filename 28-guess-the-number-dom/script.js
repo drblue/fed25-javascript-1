@@ -78,6 +78,9 @@ formGuessEl.addEventListener("submit", (e) => {
 		// YAY
 		turnoutEl.innerText = `${guess} is correct! 🥳`
 
+		// Stop user from making more guesses (as their guess was correct 🙄)
+		btnGetLuckyEl.setAttribute("disabled", "");
+
 	} else if (guess < correctNumber) {
 		// NEIN!!!!!!!!!!!!!!!111
 		turnoutEl.innerText = `${guess} is TOO LOW! 😔`
@@ -114,4 +117,7 @@ formGuessEl.addEventListener("reset", () => {
 
 	// Focus on input field 👀
 	inputGuessEl.focus();
+
+	// Re-enable user guessing
+	btnGetLuckyEl.removeAttribute("disabled");
 });
