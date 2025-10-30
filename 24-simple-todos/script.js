@@ -137,24 +137,52 @@ todolistEl.addEventListener("click", (e) => {
 
 // Render a representation of the todos-array to the DOM
 const renderTodos = () => {
-	// Clear any existing listitems from the DOM
-	todolistEl.innerHTML = "";
 
-	// Loop over the todos-array and create a new listitem for each todoitem
+	// 😤
+	/*
+	let output = [];
+
+	// Loop over the todos-array and create a new string-representation for each todoitem
 	todos.forEach((todo) => {
-		// Create a new listitem for each todo
-		// Any completed items should also have the `completed` CSS-class!
-
-		// Which CSS classes should the LI have?
 		const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
 
-		// Append a new `<li>` to the todolist
-		todolistEl.innerHTML +=
+		// Push a string-representation of the todo to the `output`-array
+		output.push(
 			`<li class="${cssClasses}">
 				<span>${todo.title}</span>
 				<button class="btn btn-danger btn-sm">Delete</button>
-			</li>`;
+			</li>`);
 	});
+	*/
+
+	/*
+	// 🤗
+	const output = todos.map((todo) => {
+		const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
+
+		return `<li class="${cssClasses}">
+				<span>${todo.title}</span>
+				<button class="btn btn-danger btn-sm">Delete</button>
+			</li>`;
+	});  // Array [string, string, string, string]
+
+	console.log("output, but with map:", output)
+
+	// Output `output` to DOM
+	todolistEl.innerHTML = output.join("");
+	*/
+
+	// 🤩🚀💫
+	todolistEl.innerHTML = todos
+		.map((todo) => {
+			const cssClasses = todo.completed ? "list-group-item completed" : "list-group-item";
+
+			return `<li class="${cssClasses}">
+					<span>${todo.title}</span>
+					<button class="btn btn-danger btn-sm">Delete</button>
+				</li>`;
+		})
+		.join("");  // String "<li></li><li></li><li></li><li></li>"
 }
 
 // Function for sorting the todos
