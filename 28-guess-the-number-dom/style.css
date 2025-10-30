@@ -1,0 +1,28 @@
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.5em;
+}
+
+html {
+	font-size: 1.25em;
+}
+
+body {
+	font-family: 'Libre Baskerville', serif;
+	font-weight: 400;
+}
+
+#top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#cheat {
+	position: absolute;
+	bottom: 1rem;
+	right: 1.5rem;
+}
+
+#formGuess label {
+	margin-bottom: 0.25rem;
+}
