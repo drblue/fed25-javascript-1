@@ -74,6 +74,12 @@ const totalPoints = studentPoints.reduce((sum, points) => {
 }, 0);
 console.log("Total points for all students:", totalPoints);
 
+// Sum all the students points directly
+const totalStudentPoints = students.reduce((sum, student) => {
+	return sum + student.points;
+}, 0);
+console.log("Total points for all students in one step:", totalPoints);
+
 /**
  * Product Stock Value
  */
