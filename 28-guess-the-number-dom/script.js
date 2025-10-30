@@ -88,3 +88,21 @@ formGuessEl.addEventListener("submit", (e) => {
 
 	}
 });
+
+// Listen for when the form is being reset/"New game" is clicked
+formGuessEl.addEventListener("reset", () => {
+	// Get a number to guess
+	correctNumber = getRandomNumber();
+
+	// Reset number of attempts to 0
+	attempts = 0;
+
+	// Update DOM with guesses made
+	guessesEl.innerText = `${attempts} guesses`;
+
+	// I'm a cheatah 🐆
+	cheatEl.innerText = correctNumber;
+
+	// Empty previous turnout
+	turnoutEl.innerText = "";
+});
