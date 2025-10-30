@@ -116,20 +116,11 @@ document.querySelectorAll("ul.todos").forEach((listEl) => {
 
 // Render a representation of the todos-array to the DOM
 const renderTodos = () => {
-	// Get a list of all todos that **are not** completed (i.e. has `completed` set to `false`)
-	const unfinishedTodos = todos.filter((todo) => {
-		return todo.completed === false;   // return !todo.completed
-	});
-	// console.log("unfinishedTodos:", unfinishedTodos);
-
-	// Get a list of all todos that **are** completed (i.e. has `completed` set to `true`)
-	const finishedTodos = todos.filter((todo) => {
-		return todo.completed === true;   // return todo.completed
-	});
-	// console.log("finishedTodos:", finishedTodos);
-
 	// Map over the unfinished todos and _transform_ each todo into a string
-	todolistEl.innerHTML = unfinishedTodos
+	todolistEl.innerHTML = todos
+		.filter((todo) => {
+			return todo.completed === false;   // return !todo.completed
+		})
 		.map((todo) => {
 			return `<li class="list-group-item">
 					<span>${todo.title}</span>
@@ -139,7 +130,10 @@ const renderTodos = () => {
 		.join("");
 
 	// Map over the finished todos and _transform_ each todo into a string
-	completedTodolistEl.innerHTML = finishedTodos
+	completedTodolistEl.innerHTML = todos
+		.filter((todo) => {
+			return todo.completed === true;   // return todo.completed
+		})
 		.map((todo) => {
 			return `<li class="list-group-item">
 					<span>${todo.title}</span>
