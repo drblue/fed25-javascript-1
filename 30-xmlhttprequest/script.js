@@ -6,13 +6,13 @@
  * går fel och den andra är datan från om requesten lyckas.
  */
 
-const getUsers = (callback) => {
+const getJSON = (url, callback) => {
 	// Create a new XMLHttpRequest
 	const request = new XMLHttpRequest();
 	console.log("Request readyState after new:", request.readyState);
 
-	// Set request to GET data from "https://jsonplaceholder.typicode.com/users"
-	request.open("GET", "https://jsonplaceholder.typicode.com/users");
+	// Set request to GET data from the URL
+	request.open("GET", url);
 	console.log("Request readyState after open:", request.readyState);
 
 	// Attach an event-listener to the request
@@ -51,7 +51,8 @@ const getUsers = (callback) => {
 	console.log("Request sent!");
 }
 
-getUsers( (err, data) => {
+// Get users plz
+getJSON("https://jsonplaceholder.typicode.com/users", (err, data) => {
 	console.log("📞 Hello from callback");
 	console.log("err:", err);
 	console.log("data:", data);
@@ -68,11 +69,8 @@ getUsers( (err, data) => {
 		.join("");
 } );
 
-getUsers( (err, data) => {
-	console.log("📞 Hello from callback");
-	console.log("err:", err);
-	console.log("data:", data);
-
+// Get posts plz
+getJSON("https://jsonplaceholder.typicode.com/posts", (err, data) => {
 	if (err) {
 		// Something went wrong 😢
 		alert(err);
@@ -80,5 +78,7 @@ getUsers( (err, data) => {
 	}
 
 	// Transform the data-array into listitems and output to DOM
-	console.log(data.map(user => user.name).join(", "));
-} );
+	document.querySelector("#posts").innerHTML = data
+		.map((post) => `<li>${post.title}</li>`)
+		.join("");
+});
