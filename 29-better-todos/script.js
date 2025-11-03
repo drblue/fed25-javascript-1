@@ -112,21 +112,14 @@ document.querySelectorAll("ul.todos").forEach((listEl) => {
 			renderTodos();
 
 		} else if (e.target.tagName === "BUTTON") {
-			// User clicked on a button
-
-			// Get the button's parent element
-			const parentLiElement = e.target.parentElement;
-
-			// From the parent element's POV, get the first span-element
-			const todoTitleEl = parentLiElement.querySelector("span");
-
-			// Get the todo title from the innerText of the span
-			const clickedTodoTitle = todoTitleEl.innerText;
+			// User clicked on a button, get the todo id from parent/closest `li`
+			// const clickedTodoId = Number(e.target.parentElement.dataset.todoId);
+			const clickedTodoId = Number(e.target.closest("li").dataset.todoId);
 
 			// Using filter to get all todos that are NOT matching
-			// the title of the todo we want to remove
+			// the id of the todo we want to remove
 			todos = todos.filter((todo) => {
-				return todo.title !== clickedTodoTitle;
+				return todo.id !== clickedTodoId;
 			});
 
 			// Render updated todos
