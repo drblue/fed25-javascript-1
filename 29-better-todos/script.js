@@ -91,12 +91,13 @@ document.querySelectorAll("ul.todos").forEach((listEl) => {
 		console.log("You clicked on either the whole list or one of its children:", e.target);
 
 		if (e.target.tagName === "SPAN") {
-			// User clicked on a span
-			console.log("You clicked on a todo with the title:", e.target.innerText);
+			// User clicked on a span, get the todo id from parent/closest `li`
+			// const clickedTodoId = Number(e.target.parentElement.dataset.todoId);
+			const clickedTodoId = Number(e.target.closest("li").dataset.todoId);
 
-			// Search todos for the todo with the matching title
+			// Search todos for the todo with the matching id
 			const clickedTodo = todos.find((todo) => {
-				return todo.title === e.target.innerText;
+				return todo.id === clickedTodoId;
 			});
 
 			// If no todo was found, bail
@@ -143,7 +144,7 @@ const renderTodos = () => {
 			return todo.completed === false;   // return !todo.completed
 		})
 		.map((todo) => {
-			return `<li class="list-group-item">
+			return `<li class="list-group-item" data-todo-id="${todo.id}">
 					<span>${todo.title}</span>
 					<button class="btn btn-danger btn-sm">Delete</button>
 				</li>`;
@@ -156,7 +157,7 @@ const renderTodos = () => {
 			return todo.completed === true;   // return todo.completed
 		})
 		.map((todo) => {
-			return `<li class="list-group-item">
+			return `<li class="list-group-item" data-todo-id="${todo.id}">
 					<span>${todo.title}</span>
 					<button class="btn btn-danger btn-sm">Delete</button>
 				</li>`;
