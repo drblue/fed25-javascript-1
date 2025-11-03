@@ -9,16 +9,16 @@
 const getJSON = (url, callback) => {
 	// Create a new XMLHttpRequest
 	const request = new XMLHttpRequest();
-	console.log("Request readyState after new:", request.readyState);
+	// console.log("Request readyState after new:", request.readyState);
 
 	// Set request to GET data from the URL
 	request.open("GET", url);
-	console.log("Request readyState after open:", request.readyState);
+	// console.log("Request readyState after open:", request.readyState);
 
 	// Attach an event-listener to the request
 	request.addEventListener("readystatechange", () => {
 		// Log request status
-		console.log("readystatechange - readyState:", request.readyState);
+		// console.log("readystatechange - readyState:", request.readyState);
 		// console.log("readystatechange - responseText:", request.responseText);
 
 		// Is request done?
@@ -32,7 +32,7 @@ const getJSON = (url, callback) => {
 
 				// Take the JSON-STRING and PARSE it into a JavaScript value
 				const data = JSON.parse(request.responseText);
-				console.log("🆗 Response OK & done. Got me sum yummy data:", data);
+				console.log("🆗 Response OK & done");
 
 				callback(false, data);
 
@@ -45,17 +45,17 @@ const getJSON = (url, callback) => {
 
 	// Send the request
 	request.send();
-	console.log("Request readyState after send:", request.readyState);
+	// console.log("Request readyState after send:", request.readyState);
 
 	// Done (?)
-	console.log("Request sent!");
+	console.log("Request sent to:", url);
 }
 
 // Get users plz
 getJSON("https://jsonplaceholder.typicode.com/users", (err, data) => {
-	console.log("📞 Hello from callback");
-	console.log("err:", err);
-	console.log("data:", data);
+	console.log("📞 Hello from callback for users");
+	// console.log("err:", err);
+	// console.log("data:", data);
 
 	if (err) {
 		// Something went wrong 😢
@@ -71,6 +71,7 @@ getJSON("https://jsonplaceholder.typicode.com/users", (err, data) => {
 
 // Get posts plz
 getJSON("https://jsonplaceholder.typicode.com/posts", (err, data) => {
+	console.log("📞 Hello from callback for posts");
 	if (err) {
 		// Something went wrong 😢
 		alert(err);
