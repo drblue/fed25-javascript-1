@@ -2,3 +2,48 @@
  * XMLHttpRequest
  *
  */
+
+// Create a new XMLHttpRequest
+const request = new XMLHttpRequest();
+console.log("Request readyState after new:", request.readyState);
+
+// Set request to GET data from "https://jsonplaceholder.typicode.com/users"
+request.open("GET", "https://jsonplaceholder.typicode.com/users");
+console.log("Request readyState after open:", request.readyState);
+
+// Attach an event-listener to the request
+request.addEventListener("readystatechange", () => {
+	// Log request status
+	console.log("readystatechange - readyState:", request.readyState);
+	// console.log("readystatechange - responseText:", request.responseText);
+
+	// Is request done?
+	if (request.readyState === 4) {
+		// Yay request is finished!
+
+		// Was the request successful?
+		if (request.status === 200) {
+			// 200 OK 👍🏻
+			// console.log("🆗 Request done, yay! Response was:", request.responseText);
+
+			// Take the JSON-STRING and PARSE it into a JavaScript value
+			const data = JSON.parse(request.responseText);
+			console.log("🆗 Response OK & done. Got me sum yummy data:", data);
+
+			// Transform the data-array into listitems and output to DOM
+			document.querySelector("#users").innerHTML = data
+				.map((user) => `<li>${user.name}</li>`)
+				.join("");
+
+		} else {
+			console.error("🚨 DANGER DANGER WILL ROBINSON!!!!!!!!");
+		}
+	}
+});
+
+// Send the request
+request.send();
+console.log("Request readyState after send:", request.readyState);
+
+// Done (?)
+console.log("Request sent!");
