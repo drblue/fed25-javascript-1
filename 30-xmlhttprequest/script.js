@@ -51,7 +51,7 @@ const getJSON = (url, callback) => {
 	console.log("Request sent to:", url);
 }
 
-// Get users plz
+// FIRST Get users plz
 getJSON("https://jsonplaceholder.typicode.com/users", (err, data) => {
 	console.log("📞 Hello from callback for users");
 	// console.log("err:", err);
@@ -67,19 +67,19 @@ getJSON("https://jsonplaceholder.typicode.com/users", (err, data) => {
 	document.querySelector("#users").innerHTML = data
 		.map((user) => `<li>${user.name}</li>`)
 		.join("");
+
+	// THEN Get posts plz
+	getJSON("https://jsonplaceholder.typicode.com/posts", (err, data) => {
+		console.log("📞 Hello from callback for posts");
+		if (err) {
+			// Something went wrong 😢
+			alert(err);
+			return;
+		}
+
+		// Transform the data-array into listitems and output to DOM
+		document.querySelector("#posts").innerHTML = data
+			.map((post) => `<li>${post.title}</li>`)
+			.join("");
+	});
 } );
-
-// Get posts plz
-getJSON("https://jsonplaceholder.typicode.com/posts", (err, data) => {
-	console.log("📞 Hello from callback for posts");
-	if (err) {
-		// Something went wrong 😢
-		alert(err);
-		return;
-	}
-
-	// Transform the data-array into listitems and output to DOM
-	document.querySelector("#posts").innerHTML = data
-		.map((post) => `<li>${post.title}</li>`)
-		.join("");
-});
