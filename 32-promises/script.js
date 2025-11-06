@@ -100,6 +100,7 @@ getJSON("data/cats.json")
 	});
 */
 
+/*
 // Get all data after one another (sequentially)
 // i.e. get cats, then get dogs, then get birds
 
@@ -123,4 +124,26 @@ getJSON("data/dogs.json")
 	})
 	.catch((err) => {
 		console.error("No dogs/cats 😢:", err);
+	});
+*/
+
+// Get `pets.json` and THEN get each category of pets in parallel
+
+getJSON("data/pets.json")
+	.then((petCategories) => {
+		console.log("Got pet categories:", petCategories);
+
+		// Make a request to *each* URL in the response
+		petCategories.forEach((petCategory) => {
+			getJSON(petCategory.url)
+				.then((pets) => {
+					console.log("Got pets:", pets);
+				})
+				.catch((err) => {
+					console.error("🚨 Something bad happened:", err);
+				});
+		});
+	})
+	.catch((err) => {
+		console.error("🚨 Something bad happened:", err);
 	});
