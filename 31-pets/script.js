@@ -42,3 +42,24 @@ const getJSON = (url, callback) => {
 
 	console.log("Request sent to:", url);
 }
+
+// Get all pet "types" (categories)
+getJSON("data/pets.json", (err, petCategories) => {
+	console.log("Got me some pet categories:", petCategories);
+
+	// Make a request to *each* URL in the response
+	petCategories.forEach((petCategory) => {
+		console.log("Pet category:", petCategory);
+
+		getJSON(petCategory.url, (err, pets) => {
+			console.log(`Got me some ${petCategory.title}:`, pets);
+
+			// Output pets to the corresponding list
+			document.querySelector("#" + petCategory.id).innerHTML = pets
+				.map((pet) => `<li>${pet.name} (${pet.age} years old)</li>`)
+				.join("");
+		});
+	});
+});
+
+console.log("Sent request for cute pets");
