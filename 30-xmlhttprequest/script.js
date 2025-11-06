@@ -52,10 +52,8 @@ const getJSON = (url, callback) => {
 }
 
 // FIRST Get users plz
-getJSON("https://jsonplaceholder.typicode.com/users", (err, data) => {
+getJSON("https://jsonplaceholder.typicode.com/users", (err, users) => {
 	console.log("📞 Hello from callback for users");
-	// console.log("err:", err);
-	// console.log("data:", data);
 
 	if (err) {
 		// Something went wrong 😢
@@ -64,12 +62,12 @@ getJSON("https://jsonplaceholder.typicode.com/users", (err, data) => {
 	}
 
 	// Transform the data-array into listitems and output to DOM
-	document.querySelector("#users").innerHTML = data
+	document.querySelector("#users").innerHTML = users
 		.map((user) => `<li>${user.name}</li>`)
 		.join("");
 
 	// THEN Get posts plz
-	getJSON("https://jsonplaceholder.typicode.com/posts", (err, data) => {
+	getJSON("https://jsonplaceholder.typicode.com/posts", (err, posts) => {
 		console.log("📞 Hello from callback for posts");
 		if (err) {
 			// Something went wrong 😢
@@ -78,8 +76,14 @@ getJSON("https://jsonplaceholder.typicode.com/users", (err, data) => {
 		}
 
 		// Transform the data-array into listitems and output to DOM
-		document.querySelector("#posts").innerHTML = data
-			.map((post) => `<li>${post.title}</li>`)
+		document.querySelector("#posts").innerHTML = posts
+			.map((post) => `
+				<li>
+					${post.title} <em>by ${users.find(user => user.id === post.userId).name}</em>
+				</li>
+			`)
 			.join("");
 	});
 } );
+
+console.log("All requests sent!");
