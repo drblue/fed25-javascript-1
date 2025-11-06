@@ -4,16 +4,20 @@
  */
 
 // Create a promise that will be either resolved or rejected in the future
-const promiseOfFutureData = new Promise( (resolve, reject) => {
-	// Our actual code that will either be resolve or reject the promise
-	setTimeout(() => {
-		// resolve("i strong, i halp!");
-		reject("nä jag känner mig litta förkyld 😇");
-	}, 3000);
-} );
+const promiseOfFutureData = () => {
+	const promiseOfData = new Promise( (resolve, reject) => {
+		// Our actual code that will either be resolve or reject the promise
+		setTimeout(() => {
+			resolve("i strong, i halp!");
+			// reject("nä jag känner mig litta förkyld 😇");
+		}, 3000);
+	} );
+
+	return promiseOfData;
+}
 console.log("Waiting for promise result...", promiseOfFutureData);
 
-promiseOfFutureData
+promiseOfFutureData()
 	.then((data) => {
 		console.log("YAY, promise was kept ☺️:", data);
 	})
