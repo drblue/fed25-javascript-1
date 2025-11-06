@@ -43,6 +43,7 @@ const getJSON = (url, callback) => {
 	console.log("Request sent to:", url);
 }
 
+/*
 // Get all pet "types" (categories)
 getJSON("data/pets.json", (err, petCategories) => {
 	console.log("Got me some pet categories:", petCategories);
@@ -63,3 +64,32 @@ getJSON("data/pets.json", (err, petCategories) => {
 });
 
 console.log("Sent request for cute pets");
+*/
+
+// Get cattos 🐱
+getJSON("data/cats.json", (err, cats) => {
+	// Got cats!
+	console.log("Got list of meows:", cats);
+
+	// Get doggos 🐶
+	getJSON("data/dogs.json", (err, dogs) => {
+		// Got tail-waggers!
+		console.log("Got list of woofs:", dogs);
+
+		// Get flying projectiles 🦜
+		getJSON("data/birds.json", (err, birds) => {
+			// Got parrots
+			console.log("Got list of echos:", birds);
+
+		});
+	});
+});
+
+// Callback Hell
+getJSON("data/cats.json", (err, cats) => {
+	getJSON("data/dogs.json", (err, dogs) => {
+		getJSON("data/birds.json", (err, birds) => {
+			console.log("😰");
+		});
+	});
+});
