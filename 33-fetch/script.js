@@ -19,13 +19,10 @@ fetch("data/dogs.json")
 		document.querySelector("#dogs").innerHTML = data
 			.map(dog => `<li>${dog.name}</li>`)
 			.join("");
-	})
-	.catch((err) => {
-		console.log("🚨 Something went wrong:", err);
-	});
 
-// Get cattos
-fetch("data/cats.json")
+		// Get cattos
+		return fetch("data/cats.json");
+	})
 	.then((response) => {
 		if (!response.ok) {
 			throw new Error("Request was not OK!");
