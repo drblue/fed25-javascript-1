@@ -80,6 +80,9 @@ console.log("promiseOfCats:", promiseOfCats);
 */
 
 // getJSON("data/dogs.json", (err, data) => {});
+
+// This fetches both dogs and cats simultaneously (in parallel)
+/*
 getJSON("data/dogs.json")
 	.then((dogs) => {
 		console.log("Yay dogs:", dogs);
@@ -94,4 +97,30 @@ getJSON("data/cats.json")
 	})
 	.catch((err) => {
 		console.error("No cats 😢:", err);
+	});
+*/
+
+// Get all data after one another (sequentially)
+// i.e. get cats, then get dogs, then get birds
+
+// Instead of invoking getJSON in a triangle like before,
+// we can return a new promise from inside each `.then()`
+
+getJSON("data/dogs.json")
+	.then((dogs) => {
+		console.log("Yay dogs:", dogs);
+
+		return getJSON("data/cats.json");
+	})
+	.then((cats) => {
+		console.log("Yay cats:", cats);
+
+		return getJSON("data/birds.json");
+	})
+	.then((birds) => {
+		console.log("Yay birds:", birds);
+
+	})
+	.catch((err) => {
+		console.error("No dogs/cats 😢:", err);
 	});
