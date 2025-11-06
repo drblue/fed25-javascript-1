@@ -1,0 +1,22 @@
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.5em;
+}
+
+#app {
+	min-height: 100vh;
+	text-align: center;
+}
+
+#app,
+#cat-wrapper {
+	align-content: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#cat-button,
+#cat-image {
+	align-self: center;
+	margin-bottom: 2rem;
+}
