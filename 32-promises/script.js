@@ -3,6 +3,26 @@
  *
  */
 
+// Create a promise that will be either resolved or rejected in the future
+const promiseOfFutureData = new Promise( (resolve, reject) => {
+	// Our actual code that will either be resolve or reject the promise
+	setTimeout(() => {
+		// resolve("i strong, i halp!");
+		reject("nä jag känner mig litta förkyld 😇");
+	}, 3000);
+} );
+console.log("Waiting for promise result...", promiseOfFutureData);
+
+promiseOfFutureData
+	.then((data) => {
+		console.log("YAY, promise was kept ☺️:", data);
+	})
+	.catch((err) => {
+		console.log("Promise was broken 😢:", err);
+	});
+
+
+// Get data from a URL
 const getJSON = (url, callback) => {
 	// Create a new XMLHttpRequest
 	const request = new XMLHttpRequest();
