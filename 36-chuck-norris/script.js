@@ -23,7 +23,7 @@ const factEl = document.querySelector("#fact");
 const getChuckNorrisFact = async () => {
 	try {
 		// Fetch URL and wait for promise to resolve
-		const res = await fetch("https://api.chucknorris.io/jokes/sdfsdf");
+		const res = await fetch("https://api.chucknorris.io/jokes/random");
 
 		// Check if the received response wasn't a successful response
 		if (!res.ok) {
