@@ -108,10 +108,15 @@ getData("data/cats.json")
 */
 
 const getPets = async () => {
-	const cats = await getData("data/cats.json");
-	console.log("cats:", cats);
+	try {
+		const cats = await getData("data/catz.json");
+		console.log("cats:", cats);
 
-	const dogs = await getData("data/dogs.json");
-	console.log("dogs:", dogs);
+		const dogs = await getData("data/dogs.json");
+		console.log("dogs:", dogs);
+
+	} catch (err) {
+		console.log("🚨 Something went wrong:", err);
+	}
 }
 getPets();  // will return an empty promise, only used to kickstart the app / fetching of data
