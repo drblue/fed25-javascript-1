@@ -20,17 +20,28 @@
 
 const factEl = document.querySelector("#fact");
 
-fetch("https://api.chucknorris.io/jokes/random")
-	.then((res) => {
-		if (!res.ok) {
-			throw new Error("Chuck Norris is unavailable to take your call right now");
-		}
+const getChuckNorrisFact = () => {
+	fetch("https://api.chucknorris.io/jokes/random")
+		.then((res) => {
+			if (!res.ok) {
+				throw new Error("Chuck Norris is unavailable to take your call right now");
+			}
 
-		return res.json();
-	})
-	.then((fact) => {
-		factEl.innerText = fact.value;
-	})
-	.catch((err) => {
-		factEl.innerText = err;
-	});
+			return res.json();
+		})
+		.then((fact) => {
+			factEl.innerText = fact.value;
+		})
+		.catch((err) => {
+			factEl.innerText = err;
+		});
+}
+
+// Listen for when Chuck Norris is summoned
+document.querySelector("#btnGetJoke").addEventListener("click", () => {
+	// Summon the almighty
+	getChuckNorrisFact();
+});
+
+// Start with a entirely true fact about Chuck Norris
+getChuckNorrisFact();
