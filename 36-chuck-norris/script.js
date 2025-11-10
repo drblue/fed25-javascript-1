@@ -20,21 +20,20 @@
 
 const factEl = document.querySelector("#fact");
 
-const getChuckNorrisFact = () => {
-	fetch("https://api.chucknorris.io/jokes/random")
-		.then((res) => {
-			if (!res.ok) {
-				throw new Error("Chuck Norris is unavailable to take your call right now");
-			}
+const getChuckNorrisFact = async () => {
+	// Fetch URL and wait for promise to resolve
+	const res = await fetch("https://api.chucknorris.io/jokes/random");
 
-			return res.json();
-		})
-		.then((fact) => {
-			factEl.innerText = fact.value;
-		})
-		.catch((err) => {
-			factEl.innerText = err;
-		});
+	// Check if the received response wasn't a successful response
+	if (!res.ok) {
+		throw new Error("Chuck Norris is unavailable to take your call right now");
+	}
+
+	// Convert response from JSON to a JavaScript value and wait for it to resolve
+	const fact = await res.json();
+
+	// We gots data, output it to the DOM
+	factEl.innerText = fact.value;
 }
 
 // Listen for when Chuck Norris is summoned
