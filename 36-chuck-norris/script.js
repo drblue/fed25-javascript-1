@@ -17,3 +17,20 @@
  * Lägg in felhantering för om hämtningen av ett slumpmässigt faktum misslyckas
  * (av någon anledning). Visa felmeddelandet på sidan (i DOM).
  */
+
+const factEl = document.querySelector("#fact");
+
+fetch("https://api.chucknorris.io/jokes/random")
+	.then((res) => {
+		if (!res.ok) {
+			throw new Error("Chuck Norris is unavailable to take your call right now");
+		}
+
+		return res.json();
+	})
+	.then((fact) => {
+		factEl.innerText = fact.value;
+	})
+	.catch((err) => {
+		factEl.innerText = err;
+	});
