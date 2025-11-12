@@ -32,10 +32,23 @@ const renderCurrentWeather = (data) => {
 	const weatherConditions = data.weather.map((condition) => {
 		return `<li><img src="https://openweathermap.org/img/wn/${condition.icon}@2x.png" alt="${condition.main}" title="${condition.description}"></li>`;
 	});
-	console.log("weatherConditions:", weatherConditions);
+
+	// Determine if it's daytime or nighttime when the forecast was updated
+	// If it's after sunrise AND before sunset, it's daytime. Otherwise it's nighttime
+	const banner = (data.dt > data.sys.sunrise && data.dt < data.sys.sunset)
+		? "assets/images/day.svg"
+		: "assets/images/night.svg";
+
+	/*
+	let banner = "assets/images/night.svg"; // assume nighttime as default
+	if (data.dt > data.sys.sunrise && data.dt < data.sys.sunset) {
+		// whoops, it's daytime
+		banner = "assets/images/day.svg";
+	}
+	*/
 
 	forecastEl.innerHTML = `
-		<img src="assets/images/forecast-banner.png" class="card-img-top">
+		<img src="${banner}" class="card-img-top">
 		<div class="card-body">
 			<h5 class="card-title" id="location">
 				<span id="city">${data.name}</span>,
