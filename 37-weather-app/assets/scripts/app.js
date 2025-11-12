@@ -7,6 +7,21 @@ const alertEl = document.querySelector("#alert");
 const forecastEl = document.querySelector("#forecast");
 const spinnerEl = document.querySelector("#spinner");
 
+const hideAlert = () => {
+	alertEl.innerText = "";
+	alertEl.className = "hide";
+}
+
+const showErrorAlert = (msg) => {
+	alertEl.innerText = msg;
+	alertEl.className = "alert alert-danger";
+}
+
+const showInfoAlert = (msg) => {
+	alertEl.innerText = msg;
+	alertEl.className = "alert alert-info";
+}
+
 /**
  * Update UI with the current weather conditions
  *
@@ -42,16 +57,14 @@ document.querySelector("#search-form").addEventListener("submit", async (e) => {
 
 	// Hide any previous current weather conditions
 	forecastEl.classList.add("hide");
-	alertEl.innerText = "";
-	alertEl.className = "hide";
+	hideAlert();
 
 	// Get value from input-field and trim it ✂️
 	const city = document.querySelector("#query").value.trim();
 	// const city = e.target.city.value;
 
 	if (city.length < 3) {
-		alertEl.innerText = "Too few characters in city, at least 3 is required!";
-		alertEl.className = "alert alert-info";
+		showInfoAlert("Too few characters in city, at least 3 is required!");
 		return;
 	}
 
@@ -66,7 +79,7 @@ document.querySelector("#search-form").addEventListener("submit", async (e) => {
 		forecastEl.classList.remove("hide");
 
 	} catch (err) {
-		alertEl.innerText = err;
-		alertEl.className = "alert alert-danger";
+		showErrorAlert(err);
+
 	}
 });
