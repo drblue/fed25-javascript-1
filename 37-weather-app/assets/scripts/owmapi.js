@@ -6,7 +6,7 @@
 
 const API_KEY = "594fd1d5bb4dbd7dcce29762cd7b595b";
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
-const FAKE_DELAY = 3000;
+const FAKE_DELAY = 1500;
 
 /**
  * Get current weather for city from OpenWeatherMap API

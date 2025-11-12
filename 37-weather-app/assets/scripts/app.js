@@ -40,6 +40,9 @@ const renderCurrentWeather = (data) => {
 document.querySelector("#search-form").addEventListener("submit", async (e) => {
 	e.preventDefault();
 
+	// Hide any previous current weather conditions
+	forecastEl.classList.add("hide");
+
 	// Get value from input-field and trim it ✂️
 	const city = document.querySelector("#query").value.trim();
 	// const city = e.target.city.value;
@@ -54,10 +57,11 @@ document.querySelector("#search-form").addEventListener("submit", async (e) => {
 		// Get weather conditions for city
 		console.log(`Fetching weather conditions for city: "${city}"`);
 		const currentWeather = await getCurrentWeather(city);
-		console.log(`Current weather conditions in "${city}:"`, currentWeather);
+		console.log(`Current weather conditions in "${city}":`, currentWeather);
 
 		// Render current weather conditions
 		renderCurrentWeather(currentWeather);
+		forecastEl.classList.remove("hide");
 
 	} catch (err) {
 		// TODO: Replace this with a proper Bootstrap Alert box
