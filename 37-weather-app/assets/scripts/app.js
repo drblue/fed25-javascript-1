@@ -69,8 +69,10 @@ document.querySelector("#search-form").addEventListener("submit", async (e) => {
 	}
 
 	try {
+		// Show loading spinner
+		spinnerEl.classList.remove("hide");
+
 		// Get weather conditions for city
-		console.log(`Fetching weather conditions for city: "${city}"`);
 		const currentWeather = await getCurrentWeather(city);
 		console.log(`Current weather conditions in "${city}":`, currentWeather);
 
@@ -82,4 +84,7 @@ document.querySelector("#search-form").addEventListener("submit", async (e) => {
 		showErrorAlert(err);
 
 	}
+
+	// Hide loading spinner
+	spinnerEl.classList.add("hide");
 });
