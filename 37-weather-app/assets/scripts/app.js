@@ -28,6 +28,12 @@ const showInfoAlert = (msg) => {
  * @param data Current weather conditions
  */
 const renderCurrentWeather = (data) => {
+	// Transform each weather condition into a listitem
+	const weatherConditions = data.weather.map((condition) => {
+		return `<li><img src="https://openweathermap.org/img/wn/${condition.icon}@2x.png" alt="${condition.main}" title="${condition.description}"></li>`;
+	});
+	console.log("weatherConditions:", weatherConditions);
+
 	forecastEl.innerHTML = `
 		<img src="assets/images/forecast-banner.png" class="card-img-top">
 		<div class="card-body">
@@ -48,6 +54,10 @@ const renderCurrentWeather = (data) => {
 				m/s
 			</p>
 		</div>
+
+		<ul class="conditions">
+			${weatherConditions.join("")}
+		</ul>
 	`;
 }
 
