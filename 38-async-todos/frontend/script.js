@@ -32,6 +32,48 @@ const inputNewTodoTitleEl = document.querySelector("#inputNewTodoTitle");
 let todos = [];
 
 /**
+ * Create a new todo in the API
+ */
+const createTodo = async (newTodo) => {
+	// POST todo to the API
+	const res = await fetch("http://localhost:3001/todos", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(newTodo),
+	});
+
+	// Check that everything went ok
+	if (!res.ok) {
+		alert("Could not create todo! 🥺");
+		console.log("Could not create todo:", res);
+		return;
+	}
+
+	return await res.json();
+}
+
+/**
+ * Delete a todo from the API
+ */
+const deleteTodo = async (id) => {
+	// Send a DELETE-request to the API
+	const res = await fetch("http://localhost:3001/todos/" + id, {
+		method: "DELETE",
+	});
+
+	// Check if everything went ok
+	if (!res.ok) {
+		alert("Could not delete todo! 😇");
+		console.log("Could not delete todo:", res);
+		return;
+	}
+
+	return await res.json();
+}
+
+/**
  * Fetch all todos from the API and return them
  *
  * GET http://localhost:3001/todos
@@ -65,6 +107,27 @@ const getAndRenderTodos = async () => {
 	renderTodos();
 }
 
+/**
+ * Update a todo in the API
+ */
+const updateTodo = async (id, data) => {
+	// Send a PATCH-request to the API
+	const res = await fetch("http://localhost:3001/todos/" + id, {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	// Check if everything went ok
+	if (!res.ok) {
+		alert("Could not update todo! 😇");
+		console.log("Could not update todo:", res);
+		return;
+	}
+}
+
 // Listen for submit-events on the form
 formCreateTodoEl.addEventListener("submit", async (e) => {
 	// Stop form from being submitted to the server and causing a page reload
@@ -85,21 +148,8 @@ formCreateTodoEl.addEventListener("submit", async (e) => {
 		completed: false,
 	}
 
-	// POST todo to the API
-	const res = await fetch("http://localhost:3001/todos", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(newTodo),
-	});
-
-	// Check that everything went ok
-	if (!res.ok) {
-		alert("Could not create todo! 🥺");
-		console.log("Could not create todo:", res);
-		return;
-	}
+	// Ask the nice API to create a todo for us
+	await createTodo(newTodo);
 
 	// Get and render an updated list of todos
 	getAndRenderTodos();
@@ -130,23 +180,10 @@ document.querySelectorAll("ul.todos").forEach((listEl) => {
 				return;
 			}
 
-			// Send a PATCH-request to the API
-			const res = await fetch("http://localhost:3001/todos/" + clickedTodoId, {
-				method: "PATCH",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					completed: !clickedTodo.completed,
-				}),
+			// Patch the todo in the API ❤️‍🩹
+			await updateTodo(clickedTodoId, {
+				completed: !clickedTodo.completed,
 			});
-
-			// Check if everything went ok
-			if (!res.ok) {
-				alert("Could not update todo! 😇");
-				console.log("Could not update todo:", res);
-				return;
-			}
 
 			// Re-render todos so the DOM reflects the current truth
 			getAndRenderTodos();
@@ -157,17 +194,8 @@ document.querySelectorAll("ul.todos").forEach((listEl) => {
 			const clickedTodoId = Number(e.target.closest("li").dataset.todoId);
 			console.log("clickedTodoId:", clickedTodoId);
 
-			// Send a DELETE-request to the API
-			const res = await fetch("http://localhost:3001/todos/" + clickedTodoId, {
-				method: "DELETE",
-			});
-
-			// Check if everything went ok
-			if (!res.ok) {
-				alert("Could not delete todo! 😇");
-				console.log("Could not delete todo:", res);
-				return;
-			}
+			// Ask the nice API to delete this horrible, boring todo for us
+			await deleteTodo(clickedTodoId);
 
 			// Render updated todos
 			getAndRenderTodos();
