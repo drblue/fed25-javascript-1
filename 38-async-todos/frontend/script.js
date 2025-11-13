@@ -112,8 +112,8 @@ formCreateTodoEl.addEventListener("submit", async (e) => {
 document.querySelectorAll("ul.todos").forEach((listEl) => {
 
 	// Listen for click-events on the todo list
-	listEl.addEventListener("click", (e) => {
-		console.log("You clicked on either the whole list or one of its children:", e.target);
+	listEl.addEventListener("click", async (e) => {
+		// console.log("You clicked on either the whole list or one of its children:", e.target);
 
 		if (e.target.tagName === "SPAN") {
 			// User clicked on a span, get the todo id from parent/closest `li`
@@ -143,15 +143,19 @@ document.querySelectorAll("ul.todos").forEach((listEl) => {
 			// User clicked on a button, get the todo id from parent/closest `li`
 			// const clickedTodoId = Number(e.target.parentElement.dataset.todoId);
 			const clickedTodoId = Number(e.target.closest("li").dataset.todoId);
+			console.log("clickedTodoId:", clickedTodoId);
 
 			// Send a DELETE-request to the API
-			/*
-			// Using filter to get all todos that are NOT matching
-			// the id of the todo we want to remove
-			todos = todos.filter((todo) => {
-				return todo.id !== clickedTodoId;
+			const res = await fetch("http://localhost:3001/todos/" + clickedTodoId, {
+				method: "DELETE",
 			});
-			*/
+
+			// Check if everything went ok
+			if (!res.ok) {
+				alert("Could not delete todo! 😇");
+				console.log("Could not delete todo:", res);
+				return;
+			}
 
 			// Render updated todos
 			getAndRenderTodos();
