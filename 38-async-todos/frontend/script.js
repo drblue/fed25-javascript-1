@@ -131,10 +131,22 @@ document.querySelectorAll("ul.todos").forEach((listEl) => {
 			}
 
 			// Send a PATCH-request to the API
-			/*
-			// Set completed to the opposite of its current value on the found todo
-			clickedTodo.completed = !clickedTodo.completed;
-			*/
+			const res = await fetch("http://localhost:3001/todos/" + clickedTodoId, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					completed: !clickedTodo.completed,
+				}),
+			});
+
+			// Check if everything went ok
+			if (!res.ok) {
+				alert("Could not update todo! 😇");
+				console.log("Could not update todo:", res);
+				return;
+			}
 
 			// Re-render todos so the DOM reflects the current truth
 			getAndRenderTodos();
