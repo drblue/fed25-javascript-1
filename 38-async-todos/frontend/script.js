@@ -1,6 +1,14 @@
 /**
  * Async Todos
  *
+ * STEG 1.
+ * Skriv funktionen `fetchTodos()` som gör en GET-request till
+ * `http://localhost:3001/todos`, översätter från JSON till JavaScript-array
+ * och returnerar den.
+ *
+ * STEG 2.
+ * Skriv funktionen `getAndRenderTodos()` som kallar på `fetchTodos()`, väntar på den
+ * och tar datan och skriver över `todos`. Därefter kallar den på `renderTodos()`.
  */
 
 // Get references to DOM elements
@@ -11,6 +19,33 @@ const inputNewTodoTitleEl = document.querySelector("#inputNewTodoTitle");
 
 // List of todos
 let todos = [];
+
+/**
+ * Fetch all todos from the API and return them
+ *
+ * GET http://localhost:3001/todos
+ */
+const fetchTodos = async () => {
+
+}
+
+/**
+ * Invokes `fetchTodos`, updates our local copy `todos` and then
+ * invokes `renderTodos`.
+ */
+const getAndRenderTodos = async () => {
+	// fetch the todos (call fetchTodos and wait for result)
+
+
+	// update `todos` with result
+
+
+	// sort the todos
+	sortTodos();
+
+	// render the todos
+	renderTodos();
+}
 
 // Listen for submit-events on the form
 formCreateTodoEl.addEventListener("submit", (e) => {
@@ -137,8 +172,5 @@ const sortTodos = () => {
 	});
 }
 
-// Actually sort the todos
-sortTodos();
-
 // Render the initial representation of the todos-array
-renderTodos();
+getAndRenderTodos();
