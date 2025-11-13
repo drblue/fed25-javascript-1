@@ -26,7 +26,14 @@ let todos = [];
  * GET http://localhost:3001/todos
  */
 const fetchTodos = async () => {
+	const res = await fetch("http://localhost:3001/todos");
+	if (!res.ok) {
+		throw new Error(`Response as not OK. Status: ${res.status} ${res.statusText}`);
+	}
 
+	const data = await res.json();
+
+	return data;
 }
 
 /**
@@ -35,10 +42,10 @@ const fetchTodos = async () => {
  */
 const getAndRenderTodos = async () => {
 	// fetch the todos (call fetchTodos and wait for result)
-
+	const fetchedTodos = await fetchTodos();
 
 	// update `todos` with result
-
+	todos = fetchedTodos;
 
 	// sort the todos
 	sortTodos();
