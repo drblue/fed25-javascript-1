@@ -9,6 +9,17 @@
  * STEG 2.
  * Skriv funktionen `getAndRenderTodos()` som kallar på `fetchTodos()`, väntar på den
  * och tar datan och skriver över `todos`. Därefter kallar den på `renderTodos()`.
+ *
+ * STEG 3.
+ * Ändra i click-handlern så att när man klickar på en BUTTON så skickas det en
+ * DELETE-request till `http://localhost:3001/todos/<id>`, väntar på svaret och
+ * därefter (om den lyckades) kallar på `getAndRenderTodos()`.
+ *
+ * STEG 4.
+ * Ändra i click-handlern så att när man klickar på en SPAN (för att toggla en todo)
+ * så skickas det en PATCH-request till `http://localhost:3001/todos/<id>`, väntar på
+ * svaret och därefter (om den lyckades) kallar på `getAndRenderTodos()`.
+ * OBS! Glöm inte att skicka med vad `completed` ska ha för nytt värde!
  */
 
 // Get references to DOM elements
@@ -119,25 +130,31 @@ document.querySelectorAll("ul.todos").forEach((listEl) => {
 				return;
 			}
 
+			// Send a PATCH-request to the API
+			/*
 			// Set completed to the opposite of its current value on the found todo
 			clickedTodo.completed = !clickedTodo.completed;
+			*/
 
 			// Re-render todos so the DOM reflects the current truth
-			renderTodos();
+			getAndRenderTodos();
 
 		} else if (e.target.tagName === "BUTTON") {
 			// User clicked on a button, get the todo id from parent/closest `li`
 			// const clickedTodoId = Number(e.target.parentElement.dataset.todoId);
 			const clickedTodoId = Number(e.target.closest("li").dataset.todoId);
 
+			// Send a DELETE-request to the API
+			/*
 			// Using filter to get all todos that are NOT matching
 			// the id of the todo we want to remove
 			todos = todos.filter((todo) => {
 				return todo.id !== clickedTodoId;
 			});
+			*/
 
 			// Render updated todos
-			renderTodos();
+			getAndRenderTodos();
 		}
 	});
 
