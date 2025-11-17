@@ -30,3 +30,9 @@ npx tsc script.ts
 ```
 
 This will create `script.js` which is a JavaScript-version of `script.ts`.
+
+We can also watch for changes to `script.ts` and automatically transpile it to JavaScript by running
+
+```bash
+npx tsc script.ts --watch
+```
