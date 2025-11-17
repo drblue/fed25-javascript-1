@@ -115,6 +115,7 @@ ages.forEach((age) => {
  * Type Aliases
  */
 
+/*
 type strang = string;
 
 let username: strang;
@@ -130,3 +131,44 @@ type StringOrNumber = string | number;
 
 let x: StringOrNumber = "fyrtiotvå";
 x = 42;
+*/
+
+interface Todo {
+	id: number;
+	title: string;
+	completed: boolean;
+	due_date?: number;
+}
+
+const todo1: Todo = {
+	id: 1,
+	title: "This is my favorite todo",
+	completed: false,
+	due_date: 1337,
+}
+
+const todo2: Todo = {
+	id: 2,
+	title: "This is my second favorite todo",
+	completed: false,
+}
+
+const todo3: Todo = {
+	id: 3,
+	title: "Such wow",
+	completed: true,
+}
+
+// Array of Todo 🤩
+const todos: Todo[] | null = [
+	{ id: 1, title: "This is my favorite todo", completed: false, due_date: 1337 },
+	{ id: 2, title: "This is my second favorite todo", completed: false },
+	{ id: 3, title: "Such wow", completed: false },
+];
+
+todos.forEach((item) => {
+	// `item` is of type Todo here, so we get autocomplete 🤩
+	console.log(item.title);
+	// But `item` is still of type `object` according to JavaScript because all TypeScript-code is removed when transpiling to JavaScript
+	console.log(typeof item);
+});
