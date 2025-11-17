@@ -3,13 +3,13 @@
  *
  */
 
-const friends = ["Joey", "Chandler", "Phoebe", "Monica", "Rachel", "Ross"];
+// const friends = ["Joey", "Chandler", "Phoebe", "Monica", "Rachel", "Ross"];
 // console.log(friends);
 
 /**
  * Explicit typing
  */
-
+/*
 let myString: string;
 myString = "Hello, world!";
 
@@ -19,19 +19,20 @@ myNumber = 1337;
 let myBoolean: boolean;
 myBoolean = true;
 // myBoolean = "false-ish";
+*/
 
 /**
  * Implicit typing
  */
 
-let myName = "Johan";
+// let myName = "Johan";
 //     ^?
 
 /**
  * Demo of VSCode plugin "Twoslash Query Comments"
  * <https://marketplace.visualstudio.com/items?itemName=Orta.vscode-twoslash-queries>
  */
-let username: string;
+// let username: string;
 //    ^?
 
 // username = -42;
@@ -39,6 +40,7 @@ let username: string;
 /**
  * Function parameter typing
  */
+/*
 const greet = (username: string, age: number) => {
 	console.log(`Hello, ${username}! You are ${age} years old.`);
 }
@@ -77,10 +79,12 @@ const greet3 = (username = "anonymoose", age?: number) => {
 greet3();
 greet3("Hangry");
 greet3(undefined, 3);
+*/
 
 /**
  * Function return typing (implicit)
  */
+/*
 const fancyGreet = (username = "anonymoose", age?: number) => {
 	if (!age) {
 		return `Oh hello there good sir/ma'am, ${username}!`;
@@ -90,10 +94,12 @@ const fancyGreet = (username = "anonymoose", age?: number) => {
 }
 const greeting = fancyGreet("Harold", 72);  // greeting till be inferred as a string, as fancyGreet only ever returns a string as the result
 console.log("fancyGreet returned:", typeof greeting, greeting);
+*/
 
 /**
  * Moar about arrays 🥳
  */
+/*
 const pets = ["cat", "dog", "hamster", "sneek"];
 pets.forEach((pet) => {
 	console.log(pet.toUpperCase());
@@ -103,3 +109,24 @@ const ages = [2, 4, 1, 3, 5, 2, 1, 3, 4, 5, 2, 1, 3, 4, 5];
 ages.forEach((age) => {
 	// console.log(age.toUpperCase());  // Error: Property 'toLocaleUpperCase' does not exist on type 'number'
 });
+*/
+
+/**
+ * Type Aliases
+ */
+
+type strang = string;
+
+let username: strang;
+username = "Johan";
+console.log("typeof username:", typeof username);
+
+// let x: string | number = 42;
+// x = "tretton37";
+
+// type aliases (and interfaces) are *always* written in PascalCase / UpperCamelCase
+
+type StringOrNumber = string | number;
+
+let x: StringOrNumber = "fyrtiotvå";
+x = 42;
