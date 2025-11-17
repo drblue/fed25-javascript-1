@@ -1,0 +1,4 @@
+/**
+ * TypeScript with Vite ✍🏻📜🏎️💨
+ *
+ */
