@@ -90,3 +90,16 @@ const fancyGreet = (username = "anonymoose", age?: number) => {
 }
 const greeting = fancyGreet("Harold", 72);  // greeting till be inferred as a string, as fancyGreet only ever returns a string as the result
 console.log("fancyGreet returned:", typeof greeting, greeting);
+
+/**
+ * Moar about arrays 🥳
+ */
+const pets = ["cat", "dog", "hamster", "sneek"];
+pets.forEach((pet) => {
+	console.log(pet.toUpperCase());
+});
+
+const ages = [2, 4, 1, 3, 5, 2, 1, 3, 4, 5, 2, 1, 3, 4, 5];
+ages.forEach((age) => {
+	// console.log(age.toUpperCase());  // Error: Property 'toLocaleUpperCase' does not exist on type 'number'
+});
