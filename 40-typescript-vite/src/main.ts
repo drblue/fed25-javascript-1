@@ -133,6 +133,7 @@ let x: StringOrNumber = "fyrtiotvå";
 x = 42;
 */
 
+/*
 interface Todo {
 	id: number;
 	title: string;
@@ -172,3 +173,34 @@ todos.forEach((item) => {
 	// But `item` is still of type `object` according to JavaScript because all TypeScript-code is removed when transpiling to JavaScript
 	console.log(typeof item);
 });
+*/
+
+/**
+ * TypeScript vs DOM
+ */
+
+const paragraphEl = document.querySelector("p");  // HTMLParagraphElement | null
+
+const paragraphEl2 = document.querySelector(".content");  // Element | null
+
+const paragraphEl3 = document.querySelector<HTMLParagraphElement>(".content");
+//        ^?
+
+const paragraphEl4 = document.querySelector<HTMLParagraphElement>(".lolcontent")!;
+//         ^?
+
+// paragraphEl4.innerText = "YOLO, so lets change stuff even if it doesn't exist";
+
+const imgEl = document.querySelector<HTMLImageElement>(".img-fluid");  // HTMLImageElement | null
+
+const imgEl2 = document.querySelector<HTMLImageElement>(".img-fluid")!;  // 😒
+
+// if (imgEl) {
+// 	imgEl.src = "/js-vs-ts.png";
+// }
+
+if (!imgEl) {
+	throw new Error("No image, can't continue existing...");
+}
+
+imgEl.src = "/js-vs-ts.png";
