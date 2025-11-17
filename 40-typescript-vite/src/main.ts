@@ -77,3 +77,16 @@ const greet3 = (username = "anonymoose", age?: number) => {
 greet3();
 greet3("Hangry");
 greet3(undefined, 3);
+
+/**
+ * Function return typing (implicit)
+ */
+const fancyGreet = (username = "anonymoose", age?: number) => {
+	if (!age) {
+		return `Oh hello there good sir/ma'am, ${username}!`;
+	}
+
+	return `Oh hello there good sir/ma'am, ${username}! You look splendid for being ${age} years old.`;
+}
+const greeting = fancyGreet("Harold", 72);  // greeting till be inferred as a string, as fancyGreet only ever returns a string as the result
+console.log("fancyGreet returned:", typeof greeting, greeting);
