@@ -6,4 +6,19 @@
 
 ```bash
 npm init -y
+npm install -D typescript
+```
+
+Make sure you get a version number when running:
+
+```bash
+npx tsc -v
+```
+
+Should output something like `Version 5.9.3`.
+
+Create a `tsconfig.json` (TypeScript config file):
+
+```bash
+npx tsc --init
 ```
