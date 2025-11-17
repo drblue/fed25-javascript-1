@@ -22,3 +22,11 @@ Create a `tsconfig.json` (TypeScript config file):
 ```bash
 npx tsc --init
 ```
+
+Rename `script.js` to `script.ts`, add some code and transpile it to JavaScript by running
+
+```bash
+npx tsc script.ts
+```
+
+This will create `script.js` which is a JavaScript-version of `script.ts`.
