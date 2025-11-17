@@ -42,7 +42,38 @@ let username: string;
 const greet = (username: string, age: number) => {
 	console.log(`Hello, ${username}! You are ${age} years old.`);
 }
-greet("Johan", 43);
-greet("Pelle", 3);
+// greet("Johan", 43);
+// greet("Pelle", 3);
 // greet(1337, "I am haxx0r, FEAR ME!!!!!111");
 // greet(["lol"]);
+
+// Optional parameters
+const greet2 = (username: string, age?: number) => {
+//                                  ^?
+	if (!age) {
+		console.log(`Hi, ${username}!`);
+		return;
+	}
+
+	console.log(`Hi, ${username}! You are ${age + 1} years old next year.`);
+ //                                       ^?
+}
+greet2("Alice");
+greet2("Bob", 24);
+// greet2("Charlie", null);  // even though parameter 2 is optional, it still has to be a number if used
+// greet2("Charlie", false);  // even though parameter 2 is optional, it still has to be a number if used
+
+// Default values
+const greet3 = (username = "anonymoose", age?: number) => {
+//                ^?
+	if (!age) {
+		console.log(`G'day, ${username}!`);
+		return;
+	}
+
+	console.log(`G'day, ${username}! You are ${age + 1} years old next year.`);
+ //                                       ^?
+}
+greet3();
+greet3("Hangry");
+greet3(undefined, 3);
