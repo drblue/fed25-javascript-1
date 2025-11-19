@@ -21,12 +21,29 @@ interface Todo {
 	completed: boolean;
 }
 
+// Get JSON-todos from localStorage
+const jsonTodos = localStorage.getItem("todos") ?? "[]";
+//      ^?
+
+// Parse jsonTodos into something we can use in JavaScript
+let todos: Todo[] = JSON.parse(jsonTodos);
+
+/*
 let todos: Todo[] = [
 	{ id: 1, title: "Wake up", completed: true },
 	{ id: 7, title: "Drink coffee", completed: true },
 	{ id: 3, title: "Code", completed: false },
 	{ id: 4, title: "Sleep", completed: false },
 ];
+*/
+
+/**
+ * Save todos to localStorage
+ */
+const saveTodos = () => {
+	const jsonTodos = JSON.stringify(todos);
+	localStorage.setItem("todos", jsonTodos);
+}
 
 /**
  * Render todos to DOM
@@ -86,6 +103,9 @@ formCreateTodoEl?.addEventListener("submit", (e) => {
 	// Add new Todo to list of todos
 	todos.push(newTodo);
 
+	// Save todos to localStorage
+	saveTodos();
+
 	// Re-render the list
 	renderTodos();
 
@@ -123,6 +143,9 @@ todolistEl.addEventListener("click", (e) => {
 		// Ok, we're sure the todo exists, so let's invert the `completed` value
 		clickedTodo.completed = !clickedTodo.completed;
 
+		// Save todos to localStorage
+		saveTodos();
+
 		// Re-render the list
 		renderTodos();
 
@@ -146,6 +169,9 @@ todolistEl.addEventListener("click", (e) => {
 		todos = todos.filter((todo) => {
 			return todo.id !== clickedTodoId;
 		});
+
+		// Save todos to localStorage
+		saveTodos();
 
 		// Re-render the list
 		renderTodos();
