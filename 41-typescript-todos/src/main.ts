@@ -1,7 +1,19 @@
+/**
+ * TypeScript Todos
+ *
+ * STEG 1
+ * Lägg till funktionalitet för att radera en todo (antingen med `findIndex` + `splice`, eller `filter`).
+ *
+ * STEG 2
+ * Lägg till funktionalitet så man kan skapa en ny todo med hjälp av formuläret `formCreateTodoEl` och input-elementet `inputNewTodoTitleEl`.
+ */
+
 import "bootstrap/dist/css/bootstrap.css";
 import "./style.css";
 
 const todolistEl = document.querySelector<HTMLUListElement>("#todolist")!;
+const formCreateTodoEl = document.querySelector<HTMLFormElement>("#formCreateTodo")!;
+const inputNewTodoTitleEl = document.querySelector<HTMLInputElement>("#inputNewTodoTitle")!;
 
 interface Todo {
 	id: number;
