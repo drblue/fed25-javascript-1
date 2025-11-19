@@ -12,8 +12,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./style.css";
 
 const todolistEl = document.querySelector<HTMLUListElement>("#todolist")!;
-const formCreateTodoEl = document.querySelector<HTMLFormElement>("#formCreateTodo")!;
-const inputNewTodoTitleEl = document.querySelector<HTMLInputElement>("#inputNewTodoTitle")!;
+const formCreateTodoEl = document.querySelector<HTMLFormElement>("#formCreateTodo");
+const inputNewTodoTitleEl = document.querySelector<HTMLInputElement>("#inputNewTodoTitle");
 
 interface Todo {
 	id: number;
@@ -23,7 +23,7 @@ interface Todo {
 
 let todos: Todo[] = [
 	{ id: 1, title: "Wake up", completed: true },
-	{ id: 2, title: "Drink coffee", completed: true },
+	{ id: 7, title: "Drink coffee", completed: true },
 	{ id: 3, title: "Code", completed: false },
 	{ id: 4, title: "Sleep", completed: false },
 ];
@@ -41,6 +41,57 @@ const renderTodos = () => {
 		`)
 		.join("");
 }
+
+/**
+ * Listen for form submits
+ */
+formCreateTodoEl?.addEventListener("submit", (e) => {
+	e.preventDefault();
+
+	// ONLY get value from inputNewTodoTitleEl if is ISN'T null
+	// If it IS null, then use the default value ""
+	const newTodoTitle = inputNewTodoTitleEl?.value.trim() || "";
+//         ^?
+
+	// DEMAND a longer title than 2 chars 👨🏻‍🏫
+	if (newTodoTitle.length < 3) {
+		alert("Too short todo to do!");
+		return;
+	}
+
+	// Find the highest id among all todos
+	// const maxTodoId = Math.max(0, ...todos.map((todo) => { return todo.id; }) );
+	/*
+	const maxTodoId = todos.reduce((maxId, todo) => {
+		if (todo.id > maxId) {
+			return todo.id;
+		}
+		return maxId;
+	}, 0);
+	*/
+	/*
+	const maxTodoId = todos.reduce((maxId, todo) => {
+		return (todo.id > maxId) ? todo.id : maxId;
+	}, 0);
+	*/
+	const maxTodoId = todos.reduce((maxId, todo) => (todo.id > maxId) ? todo.id : maxId, 0);
+
+	// Create a new Todo object
+	const newTodo: Todo = {
+		id: maxTodoId + 1,
+		title: newTodoTitle,
+		completed: false,
+	}
+
+	// Add new Todo to list of todos
+	todos.push(newTodo);
+
+	// Re-render the list
+	renderTodos();
+
+	// Clear input field
+	inputNewTodoTitleEl!.value = "";
+});
 
 /**
  * Listen for clicks on the todolist
