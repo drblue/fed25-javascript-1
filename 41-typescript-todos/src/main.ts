@@ -74,6 +74,30 @@ todolistEl.addEventListener("click", (e) => {
 
 		// Re-render the list
 		renderTodos();
+
+	} else if (targetEl.tagName === "BUTTON") {
+		// We should delete the todo
+
+		// Get ID of todo from parent listitem element
+		const clickedTodoId = Number(targetEl.parentElement?.dataset.todoId);
+
+		/*
+		// Find the index of the todo with the ID
+		const clickedTodoIndex = todos.findIndex((todo) => {
+			return todo.id === clickedTodoId;
+		});
+
+		// Splice the array 🎞️
+		todos.splice(clickedTodoIndex, 1);
+		*/
+
+		// Filter todos and exclude the todo we want to delete
+		todos = todos.filter((todo) => {
+			return todo.id !== clickedTodoId;
+		});
+
+		// Re-render the list
+		renderTodos();
 	}
 });
 
