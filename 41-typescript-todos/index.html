@@ -8,7 +8,28 @@
 </head>
 
 <body>
-	<div id="app"></div>
+	<div class="container py-2">
+		<h1>TypeScript Todos</h1>
+
+		<h2>Things I've got to do</h2>
+		<ul id="todolist" class="todos list-group mb-5"></ul>
+
+		<h2>Things I've done</h2>
+		<ul id="completed-todolist" class="todos list-group mb-5"></ul>
+
+		<hr>
+
+		<h2 class="mb-3">Create a new todo</h2>
+		<form id="formCreateTodo">
+			<div class="mb-3">
+				<label for="inputNewTodoTitle" class="form-label">Title</label>
+				<input type="text" class="form-control" id="inputNewTodoTitle" placeholder="Buy milk">
+			</div>
+			<button type="submit" class="btn btn-success">Create</button>
+			<button type="reset" class="btn btn-warning">Reset</button>
+		</form>
+	</div>
+
 	<script type="module" src="/src/main.ts"></script>
 </body>
 </html>

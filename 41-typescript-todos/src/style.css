@@ -1,0 +1,19 @@
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.5em;
+}
+
+#completed-todolist li > span {
+	color: var(--bs-success);
+	font-style: italic;
+	text-decoration: line-through;
+}
+
+.todos li {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.todos li > span {
+	cursor: pointer;
+}
