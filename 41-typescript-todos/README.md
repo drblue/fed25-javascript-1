@@ -47,3 +47,28 @@ Import `style.css` in `main.ts`:
 ```ts
 import "./style.css";
 ```
+
+### Step 8
+
+Install `bootstrap` with the following command from the **root** folder of this app:
+
+```bash
+npm install bootstrap
+```
+
+Edit `src/main.ts` and add a new line *before* `import "./style.css";`:
+
+```ts
+import "bootstrap/dist/css/bootstrap.css";
+```
+
+The resulting file should look like this:
+
+```ts
+import "bootstrap/dist/css/bootstrap.css";
+import "./style.css";
+```
+
+### Bonus - Activate Dark Mode 🦇🌘
+
+Add `data-bs-theme="dark"` to the `<html>` tag in `index.html`.
