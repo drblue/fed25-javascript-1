@@ -39,3 +39,11 @@ Fix `index.html` so it uses tabs instead of spaces 🤩. Also change the favicon
 ### Step 6
 
 Start the dev-server by running `npm run dev` (preferably from the integrated terminal in VS Code).
+
+### Step 7
+
+Import `style.css` in `main.ts`:
+
+```ts
+import "./style.css";
+```
