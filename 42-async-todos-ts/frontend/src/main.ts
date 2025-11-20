@@ -220,6 +220,12 @@ todolistEl.addEventListener("click", async (e) => {
 		}
 
 	} else if (targetEl.tagName === "BUTTON") {
+		// Ask user if they're sure
+		if (!confirm("U SURE BRO?!")) {
+			alert("Mkai... 🙄");
+			return;
+		}
+
 		// We should delete the todo
 
 		// Get ID of todo from parent listitem element
