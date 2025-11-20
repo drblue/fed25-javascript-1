@@ -62,6 +62,18 @@ const getTodos = async () => {
 }
 
 /**
+ * Delete todo in the API
+ */
+const deleteTodo = async (id: number) => {
+	const res = await fetch("http://localhost:3001/todos/" + id, {
+		method: "DELETE",
+	});
+	if (!res.ok) {
+		throw new Error(`Could not delete todo. Status code was: ${res.status} ${res.statusText}`);
+	}
+}
+
+/**
  * Update todo in the API
  */
 const updateTodo = async (id: number, payload: UpdateTodoData) => {
@@ -213,8 +225,17 @@ todolistEl.addEventListener("click", async (e) => {
 		// Get ID of todo from parent listitem element
 		const clickedTodoId = Number(targetEl.parentElement?.dataset.todoId);
 
-		console.log("TODO: Add logic here for deleting the todo in the API");
+		try {
+			// Delete todo in the API
+			await deleteTodo(clickedTodoId);
 
+			// Get todos and render
+			getAndRenderTodos();
+
+		} catch (err) {
+			console.log(err);
+			showError("Could not delete todo on the server");
+		}
 	}
 });
 
