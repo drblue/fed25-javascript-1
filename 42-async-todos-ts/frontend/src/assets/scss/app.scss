@@ -1,0 +1,26 @@
+// $blue: #2e92d3;
+// $border-radius: 1rem;
+
+@import "bootstrap/scss/bootstrap";
+
+$completed-color: #0f0;
+
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.5em;
+}
+
+.todo.completed .todo-title {
+	color: $completed-color;
+	font-style: italic;
+	text-decoration: line-through;
+}
+
+.todos li {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.todos li > span {
+	cursor: pointer;
+}
