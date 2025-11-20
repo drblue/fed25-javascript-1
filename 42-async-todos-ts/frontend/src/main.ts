@@ -1,7 +1,8 @@
 /**
  * Async Todos TypeScript
  */
-
+import { createTodo, deleteTodo, getTodos, updateTodo } from "./services/TodosAPI";
+import type { Todo } from "./services/TodosAPI.types";
 import "./assets/scss/app.scss";
 
 const alertEl = document.querySelector<HTMLDivElement>("#alert")!;
@@ -9,89 +10,7 @@ const formCreateTodoEl = document.querySelector<HTMLFormElement>("#formCreateTod
 const inputNewTodoTitleEl = document.querySelector<HTMLInputElement>("#inputNewTodoTitle");
 const todolistEl = document.querySelector<HTMLUListElement>("#todolist")!;
 
-interface Todo {
-	id: number;
-	title: string;
-	completed: boolean;
-}
-
-interface CreateTodoData {
-	title: string;
-	completed: boolean;
-}
-
-interface UpdateTodoData {
-	title?: string;
-	completed?: boolean;
-}
-
 let todos: Todo[] = [];
-
-/**
- * Create todo in the API
- */
-const createTodo = async (payload: CreateTodoData) => {
-	const res = await fetch("http://localhost:3001/todos", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(payload),
-	});
-	if (!res.ok) {
-		throw new Error(`Could not create todo. Status code was: ${res.status} ${res.statusText}`);
-	}
-
-	const data = await res.json() as Todo;
-
-	return data;
-}
-
-/**
- * Get todos from API
- */
-const getTodos = async () => {
-	const res = await fetch("http://localhost:3001/todos");
-	if (!res.ok) {
-		throw new Error(`Could not get todos. Status code was: ${res.status} ${res.statusText}`);
-	}
-
-	const data = await res.json() as Todo[];
-
-	return data;
-}
-
-/**
- * Delete todo in the API
- */
-const deleteTodo = async (id: number) => {
-	const res = await fetch("http://localhost:3001/todos/" + id, {
-		method: "DELETE",
-	});
-	if (!res.ok) {
-		throw new Error(`Could not delete todo. Status code was: ${res.status} ${res.statusText}`);
-	}
-}
-
-/**
- * Update todo in the API
- */
-const updateTodo = async (id: number, payload: UpdateTodoData) => {
-	const res = await fetch("http://localhost:3001/todos/" + id, {
-		method: "PATCH",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(payload),
-	});
-	if (!res.ok) {
-		throw new Error(`Could not update todo. Status code was: ${res.status} ${res.statusText}`);
-	}
-
-	const data = await res.json() as Todo;
-
-	return data;
-}
 
 /**
  * Get todos from API, update local copy and render todos

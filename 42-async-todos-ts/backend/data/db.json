@@ -29,6 +29,11 @@
       "title": "Achieve world domination 👑",
       "completed": false,
       "id": 6
+    },
+    {
+      "title": "TypeScript modules are sooooo cooool 🤩🥳🥳🥳🥳",
+      "completed": false,
+      "id": 7
     }
   ]
 }
