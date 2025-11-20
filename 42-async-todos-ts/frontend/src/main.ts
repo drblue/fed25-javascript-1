@@ -17,6 +17,31 @@ interface Todo {
 let todos: Todo[] = [];
 
 /**
+ * Get todos from API
+ */
+const getTodos = async () => {
+	const res = await fetch("http://localhost:3001/todos");
+	if (!res.ok) {
+		throw new Error(`Could not get todos. Status code was: ${res.status} ${res.statusText}`);
+	}
+
+	const data = await res.json() as Todo[];
+
+	return data;
+}
+
+/**
+ * Get todos from API, update local copy and render todos
+ */
+const getAndRenderTodos = async () => {
+	// Get todos from API and update local copy
+	todos = await getTodos();
+
+	// Render dem todos
+	renderTodos();
+}
+
+/**
  * Render todos to DOM
  */
 const renderTodos = () => {
@@ -87,3 +112,6 @@ todolistEl.addEventListener("click", (e) => {
 
 	}
 });
+
+// Get and render todos on page load
+getAndRenderTodos();
