@@ -14,7 +14,32 @@ interface Todo {
 	completed: boolean;
 }
 
+interface CreateTodoData {
+	title: string;
+	completed: boolean;
+}
+
 let todos: Todo[] = [];
+
+/**
+ * Create todo in the API
+ */
+const createTodo = async (payload: CreateTodoData) => {
+	const res = await fetch("http://localhost:3001/todos", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(payload),
+	});
+	if (!res.ok) {
+		throw new Error(`Could not create todo. Status code was: ${res.status} ${res.statusText}`);
+	}
+
+	const data = await res.json() as Todo;
+
+	return data;
+}
 
 /**
  * Get todos from API
@@ -58,7 +83,7 @@ const renderTodos = () => {
 /**
  * Listen for form submits
  */
-formCreateTodoEl?.addEventListener("submit", (e) => {
+formCreateTodoEl?.addEventListener("submit", async (e) => {
 	e.preventDefault();
 
 	// ONLY get value from inputNewTodoTitleEl if is ISN'T null
@@ -71,7 +96,22 @@ formCreateTodoEl?.addEventListener("submit", (e) => {
 		return;
 	}
 
-	console.log("TODO: Add logic here for creating a new todo in the API");
+	// Construct payload
+	const newTodo = {
+		title: newTodoTitle,
+		completed: false,
+	}
+
+	// Create todo in API
+	await createTodo(newTodo);
+
+	// Get todos and render
+	getAndRenderTodos();
+
+	// Clear input field
+	if (inputNewTodoTitleEl) {
+		inputNewTodoTitleEl.value = "";
+	}
 });
 
 /**
