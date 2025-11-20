@@ -4,9 +4,10 @@
 
 import "./assets/scss/app.scss";
 
-const todolistEl = document.querySelector<HTMLUListElement>("#todolist")!;
+const alertEl = document.querySelector<HTMLDivElement>("#alert")!;
 const formCreateTodoEl = document.querySelector<HTMLFormElement>("#formCreateTodo");
 const inputNewTodoTitleEl = document.querySelector<HTMLInputElement>("#inputNewTodoTitle");
+const todolistEl = document.querySelector<HTMLUListElement>("#todolist")!;
 
 interface Todo {
 	id: number;
@@ -59,11 +60,21 @@ const getTodos = async () => {
  * Get todos from API, update local copy and render todos
  */
 const getAndRenderTodos = async () => {
-	// Get todos from API and update local copy
-	todos = await getTodos();
+	// Try to get todos, update local copy and render todos
+	// Otherwise show an error
+	hideError();
 
-	// Render dem todos
-	renderTodos();
+	try {
+		// Get todos from API and update local copy
+		todos = await getTodos();
+
+		// Render dem todos
+		renderTodos();
+
+	} catch (err) {
+		showError("Could not get todos from the server");
+		console.log(err);
+	}
 }
 
 /**
@@ -78,6 +89,17 @@ const renderTodos = () => {
 			</li>
 		`)
 		.join("");
+}
+
+/** Error helpers */
+const hideError = () => {
+	alertEl.innerText = "";
+	alertEl.classList.add("d-none");
+}
+const showError = (msg: string) => {
+	alertEl.innerText = msg;
+	alertEl.classList.remove("d-none");
+	alertEl.scrollIntoView();  // 👀
 }
 
 /**
@@ -102,15 +124,21 @@ formCreateTodoEl?.addEventListener("submit", async (e) => {
 		completed: false,
 	}
 
-	// Create todo in API
-	await createTodo(newTodo);
+	try {
+		// Create todo in API
+		await createTodo(newTodo);
 
-	// Get todos and render
-	getAndRenderTodos();
+		// Get todos and render
+		getAndRenderTodos();
 
-	// Clear input field
-	if (inputNewTodoTitleEl) {
-		inputNewTodoTitleEl.value = "";
+		// Clear input field
+		if (inputNewTodoTitleEl) {
+			inputNewTodoTitleEl.value = "";
+		}
+
+	} catch (err) {
+		console.log(err);
+		showError("Could not create todo on the server");
 	}
 });
 
