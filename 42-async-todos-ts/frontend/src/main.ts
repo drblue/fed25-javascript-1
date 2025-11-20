@@ -20,6 +20,11 @@ interface CreateTodoData {
 	completed: boolean;
 }
 
+interface UpdateTodoData {
+	title?: string;
+	completed?: boolean;
+}
+
 let todos: Todo[] = [];
 
 /**
@@ -52,6 +57,26 @@ const getTodos = async () => {
 	}
 
 	const data = await res.json() as Todo[];
+
+	return data;
+}
+
+/**
+ * Update todo in the API
+ */
+const updateTodo = async (id: number, payload: UpdateTodoData) => {
+	const res = await fetch("http://localhost:3001/todos/" + id, {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(payload),
+	});
+	if (!res.ok) {
+		throw new Error(`Could not update todo. Status code was: ${res.status} ${res.statusText}`);
+	}
+
+	const data = await res.json() as Todo;
 
 	return data;
 }
@@ -145,8 +170,8 @@ formCreateTodoEl?.addEventListener("submit", async (e) => {
 /**
  * Listen for clicks on the todolist
  */
-todolistEl.addEventListener("click", (e) => {
-	console.log("You clicked, wow!", e.target);
+todolistEl.addEventListener("click", async (e) => {
+	// console.log("You clicked, wow!", e.target);
 
 	// Promise TypeScript that e.target actually is a HTMLElement
 	const targetEl = e.target as HTMLElement;
@@ -168,7 +193,19 @@ todolistEl.addEventListener("click", (e) => {
 			return;
 		}
 
-		console.log("TODO: Add logic here for updating the todo in the API");
+		try {
+			// Update todo in the API
+			await updateTodo(clickedTodoId, {
+				completed: !clickedTodo.completed,
+			});
+
+			// Get todos and render
+			getAndRenderTodos();
+
+		} catch (err) {
+			console.log(err);
+			showError("Could not toggle todo on the server");
+		}
 
 	} else if (targetEl.tagName === "BUTTON") {
 		// We should delete the todo
