@@ -4,9 +4,9 @@
  * <https://openweathermap.org/current>
  */
 
-const API_KEY = "594fd1d5bb4dbd7dcce29762cd7b595b";
-const BASE_URL = "https://api.openweathermap.org/data/2.5";
-const FAKE_DELAY = 1500;
+const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://api.openweathermap.org/data/2.5";
+const FAKE_DELAY = Number(import.meta.env.VITE_API_FAKE_DELAY) || 1500;
 
 /**
  * Get current weather for city from OpenWeatherMap API
@@ -14,7 +14,11 @@ const FAKE_DELAY = 1500;
  * @param {string} city
  */
 
-const getCurrentWeather = async (city) => {
+export const getCurrentWeather = async (city: string) => {
+	if (!API_KEY) {
+		throw new Error("No API_KEY defined in environment variables!");
+	}
+
 	// Get current weather conditions in `city`
 	const res = await fetch(`${BASE_URL}/weather?q=${city}&units=metric&appid=${API_KEY}`);
 

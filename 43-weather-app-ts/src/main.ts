@@ -1,3 +1,4 @@
+import { getCurrentWeather } from "./services/OWMAPI";
 import "./assets/scss/app.scss";
 
 console.log("Environment variables:", import.meta.env);
