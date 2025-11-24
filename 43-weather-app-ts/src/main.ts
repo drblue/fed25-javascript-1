@@ -1,6 +1,8 @@
 import { getCurrentWeather } from "./services/OWMAPI";
-import "./assets/scss/app.scss";
 import type { CurrentWeather } from "./services/OWMAPI.types";
+import imgDay from "./assets/images/day.svg";
+import imgNight from "./assets/images/night.svg";
+import "./assets/scss/app.scss";
 
 console.log("Environment variables:", import.meta.env);
 console.log("API key from env is:", import.meta.env.VITE_API_KEY);
@@ -42,8 +44,8 @@ const renderCurrentWeather = (data: CurrentWeather) => {
 	// Determine if it's daytime or nighttime when the forecast was updated
 	// If it's after sunrise AND before sunset, it's daytime. Otherwise it's nighttime
 	const banner = (data.dt > data.sys.sunrise && data.dt < data.sys.sunset)
-		? "assets/images/day.svg"
-		: "assets/images/night.svg";
+		? imgDay
+		: imgNight;
 
 	/*
 	let banner = "assets/images/night.svg"; // assume nighttime as default
