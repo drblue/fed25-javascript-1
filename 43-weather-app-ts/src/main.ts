@@ -117,6 +117,9 @@ document.querySelector<HTMLFormElement>("#search-form")!.addEventListener("submi
 		const currentWeather = await getCurrentWeather(city);
 		console.log(`Current weather conditions in "${city}":`, currentWeather);
 
+		// Save searched city to localStorage
+		localStorage.setItem("weather_city", city);
+
 		// Render current weather conditions
 		renderCurrentWeather(currentWeather);
 		forecastEl.classList.remove("hide");
@@ -132,3 +135,6 @@ document.querySelector<HTMLFormElement>("#search-form")!.addEventListener("submi
 	// Hide loading spinner
 	spinnerEl.classList.add("hide");
 });
+
+// Set query-input to any previously saved city in localStorage
+document.querySelector<HTMLInputElement>("#query")!.value = localStorage.getItem("weather_city") ?? "";
