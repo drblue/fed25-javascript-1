@@ -3,3 +3,31 @@
  *
  * <https://openweathermap.org/current>
  */
+
+interface WeatherCondition {
+	description: string;
+	icon: string;
+	id: number;
+	main: string;
+}
+
+export interface CurrentWeather {
+	dt: number;
+	main: {
+		temp: number;
+		feels_like: number;
+		humidity: number;
+	};
+	name: string;
+	sys: {
+		country: string;
+		sunrise: number;
+		sunset: number;
+	};
+	weather: WeatherCondition[];
+	wind: {
+		deg: number;
+		gust: number;
+		speed: number;
+	}
+}

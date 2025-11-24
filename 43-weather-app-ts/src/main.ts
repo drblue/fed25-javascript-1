@@ -1,5 +1,6 @@
 import { getCurrentWeather } from "./services/OWMAPI";
 import "./assets/scss/app.scss";
+import type { CurrentWeather } from "./services/OWMAPI.types";
 
 console.log("Environment variables:", import.meta.env);
 console.log("API key from env is:", import.meta.env.VITE_API_KEY);
@@ -32,7 +33,7 @@ const showInfoAlert = (msg: string) => {
  *
  * @param data Current weather conditions
  */
-const renderCurrentWeather = (data) => {
+const renderCurrentWeather = (data: CurrentWeather) => {
 	// Transform each weather condition into a listitem
 	const weatherConditions = data.weather.map((condition) => {
 		return `<li><img src="https://openweathermap.org/img/wn/${condition.icon}@2x.png" alt="${condition.main}" title="${condition.description}"></li>`;

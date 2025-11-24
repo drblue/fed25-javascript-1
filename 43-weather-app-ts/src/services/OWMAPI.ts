@@ -4,6 +4,8 @@
  * <https://openweathermap.org/current>
  */
 
+import type { CurrentWeather } from "./OWMAPI.types";
+
 const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://api.openweathermap.org/data/2.5";
 const FAKE_DELAY = Number(import.meta.env.VITE_API_FAKE_DELAY) || 1500;
@@ -13,7 +15,6 @@ const FAKE_DELAY = Number(import.meta.env.VITE_API_FAKE_DELAY) || 1500;
  *
  * @param {string} city
  */
-
 export const getCurrentWeather = async (city: string) => {
 	if (!API_KEY) {
 		throw new Error("No API_KEY defined in environment variables!");
@@ -33,7 +34,8 @@ export const getCurrentWeather = async (city: string) => {
 	}
 
 	// Convert response body from JSON to a JavaScript value
-	const data = await res.json();
+	const data = await res.json() as CurrentWeather;
+ //     ^?
 
 	// Return current weather condition
 	return data;
