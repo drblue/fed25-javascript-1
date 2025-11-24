@@ -8,21 +8,21 @@ console.log("API key from env is:", import.meta.env.VITE_API_KEY);
  *
  */
 
-const alertEl = document.querySelector("#alert");
-const forecastEl = document.querySelector("#forecast");
-const spinnerEl = document.querySelector("#spinner");
+const alertEl = document.querySelector<HTMLDivElement>("#alert")!;
+const forecastEl = document.querySelector<HTMLDivElement>("#forecast")!;
+const spinnerEl = document.querySelector<HTMLDivElement>("#spinner")!;
 
 const hideAlert = () => {
 	alertEl.innerText = "";
 	alertEl.className = "hide";
 }
 
-const showErrorAlert = (msg) => {
+const showErrorAlert = (msg: string) => {
 	alertEl.innerText = msg;
 	alertEl.className = "alert alert-danger";
 }
 
-const showInfoAlert = (msg) => {
+const showInfoAlert = (msg: string) => {
 	alertEl.innerText = msg;
 	alertEl.className = "alert alert-info";
 }
@@ -88,7 +88,7 @@ const renderCurrentWeather = (data) => {
 }
 
 // Listen for when the user wants to get weather conditions for a city
-document.querySelector("#search-form").addEventListener("submit", async (e) => {
+document.querySelector<HTMLFormElement>("#search-form")!.addEventListener("submit", async (e) => {
 	e.preventDefault();
 
 	// Hide any previous current weather conditions
@@ -96,8 +96,10 @@ document.querySelector("#search-form").addEventListener("submit", async (e) => {
 	hideAlert();
 
 	// Get value from input-field and trim it ✂️
-	const city = document.querySelector("#query").value.trim();
+	const city = document.querySelector<HTMLInputElement>("#query")!.value.trim();
 	// const city = e.target.city.value;
+	// const targetEl = e.target as HTMLFormElement;
+	// const city = targetEl.query.value.trim();
 
 	if (city.length < 3) {
 		showInfoAlert("Too few characters in city, at least 3 is required!");
@@ -117,8 +119,11 @@ document.querySelector("#search-form").addEventListener("submit", async (e) => {
 		forecastEl.classList.remove("hide");
 
 	} catch (err) {
-		showErrorAlert(err);
-
+		if (err instanceof Error) {
+			showErrorAlert(err.message);
+		} else {
+			showErrorAlert("Something very unexpected happened 😳");
+		}
 	}
 
 	// Hide loading spinner
